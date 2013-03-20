@@ -13,7 +13,7 @@ public class Main extends StateBasedGame{
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 				
-		System.out.print("Hello World");
+		System.out.println("Hello World");
 	}
 
 	
