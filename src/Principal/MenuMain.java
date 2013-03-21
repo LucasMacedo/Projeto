@@ -14,7 +14,7 @@ public class MenuMain extends BasicGameState {
 	public static final int ID = 1;
 	GameContainer gc;
 	StateBasedGame game;
-	String[] opcao = {"Iniciar","Sair"};
+	String[] opcao = {"Iniciar","Opções","Sair"};
 	private int selected;
 	
 	@Override
@@ -71,9 +71,13 @@ public class MenuMain extends BasicGameState {
 				//this.game.enterState(new Fase1());
 				System.out.println("Iniciar");
 			}
+			else if (this.opcao[this.selected].equals("Opções")){
+				this.game.enterState(new MenuOpcoes().getID());
+			}
+			
+			
 			else if (this.opcao[this.selected].equals("Sair")){
-				System.out.println("Sair");
-				//this.gc.exit();
+				this.gc.exit();
 			}
 		}
 		

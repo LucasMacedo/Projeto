@@ -30,6 +30,7 @@ public class Main extends StateBasedGame{
 	public void initStatesList(GameContainer gc) throws SlickException {
 		
 		this.addState(new MenuMain());
+		this.addState(new MenuOpcoes());
 		
 	}
 
