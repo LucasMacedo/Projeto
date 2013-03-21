@@ -12,7 +12,7 @@ public class Main extends StateBasedGame{
 		
 		try{
 		app = new AppGameContainer(new Main("a"));
-		app.setDisplayMode(800, 600, false);
+		app.setDisplayMode(600, 700, false);
 		app.setTargetFrameRate(60);
 		
 		app.start();
@@ -27,12 +27,11 @@ public class Main extends StateBasedGame{
 	}
 
 	@Override
-	public void initStatesList(GameContainer arg0) throws SlickException {
-				
-		System.out.println("Hello World");
+	public void initStatesList(GameContainer gc) throws SlickException {
+		
+		this.addState(new MenuMain());
+		
 	}
 
-	
-	
 
 }
