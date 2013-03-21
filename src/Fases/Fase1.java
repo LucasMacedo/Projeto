@@ -13,6 +13,7 @@ public class Fase1 extends BasicGameState{
 	public static final int ID = 3;
 	StateBasedGame game;
 	Player player;
+	Pokemon pokemon;
 
 	public Fase1(){
 		
@@ -20,13 +21,13 @@ public class Fase1 extends BasicGameState{
 	
 	@Override
 	public int getID() {
-		return Fase1.ID;
+		return ID;
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame game)throws SlickException {
 		this.game = game;
-		Pokemon pokemon = new Pokemon(1, "Bulbasaur", "Player");
+		pokemon = new Pokemon(1, "Bulbasaur", "Player");
 		this.player = new Player(pokemon, 100, 100);
 	}
 
@@ -38,6 +39,10 @@ public class Fase1 extends BasicGameState{
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)throws SlickException {
 		this.player.render(gc, game, g);
+		
+		g.drawRoundRect(gc.getWidth()/2 + 110, gc.getHeight()/2 + 180, 180, 150, 10);
+		g.drawString(pokemon.getNome(), gc.getWidth()/2 + 120, gc.getHeight()/2 + 190);
+		g.drawString(" "+ pokemon.getLvl(), gc.getWidth()/2 + 250 , gc.getHeight()/2 + 190);
 	}
 	
 }

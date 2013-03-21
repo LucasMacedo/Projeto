@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MenuOpcoes extends BasicGameState {
 
-	public static final int ID = 3;
+	public static final int ID = 2;
 	GameContainer gc;
 	StateBasedGame game;
 	String[] opcao = {"Volume","Tela","Voltar"};

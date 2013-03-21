@@ -9,6 +9,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import Fases.Fase1;
+
 public class MenuMain extends BasicGameState {
 
 	public static final int ID = 1;
@@ -68,15 +70,15 @@ public class MenuMain extends BasicGameState {
  		
 		if (key == Input.KEY_ENTER){
 			if(this.opcao[this.selected].equals("Iniciar")){
-				//this.game.enterState(new Fase1());
-				System.out.println("Iniciar");
+				this.game.enterState(new Fase1().getID());
 			}
-			else if (this.opcao[this.selected].equals("Opções")){
+			
+			if (this.opcao[this.selected].equals("Opções")){
 				this.game.enterState(new MenuOpcoes().getID());
 			}
 			
 			
-			else if (this.opcao[this.selected].equals("Sair")){
+			if (this.opcao[this.selected].equals("Sair")){
 				this.gc.exit();
 			}
 		}

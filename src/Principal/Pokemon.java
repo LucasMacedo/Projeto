@@ -3,7 +3,6 @@ package Principal;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Pokemon extends GameObject{
@@ -24,9 +23,9 @@ public class Pokemon extends GameObject{
 	}
 	
 	public Pokemon(int id, String nome, String tipo){//tipo seria player ou inimigo
+		
 		this.id = id;
 		this.nome = nome;
-		
 		this.tipo = tipo;
 		
 		////// mudar

@@ -25,17 +25,23 @@ public class Player{
 	}
 	
 	public void input(Input input){
-		if(input.isKeyDown(input.KEY_A)){
+		if(input.isKeyDown(Input.KEY_A) || input.isKeyDown(Input.KEY_LEFT)){
 			this.pokemon.moveEsquerda(this.pokemon.speed);
 		}
-		if(input.isKeyDown(input.KEY_S)){
+		if(input.isKeyDown(Input.KEY_S) || input.isKeyDown(Input.KEY_DOWN)){
 			this.pokemon.moveBaixo(this.pokemon.speed);
 		}
-		if(input.isKeyDown(input.KEY_D)){
+		if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_RIGHT)){
 			this.pokemon.moveDireita(this.pokemon.speed);
 		}
-		if(input.isKeyDown(input.KEY_W)){
+		if(input.isKeyDown(Input.KEY_W) || input.isKeyDown(Input.KEY_UP)){
 			this.pokemon.moveCima(this.pokemon.speed);
 		}
+		
+		if(input.isKeyDown(Input.KEY_SPACE)){
+			//this.ataca();
+		}
+		
+		
 	}
 }
