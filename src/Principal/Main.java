@@ -5,6 +5,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import Fases.Fase1;
+
 public class Main extends StateBasedGame{
 	
 	public static void main(String[] args){
@@ -12,7 +14,7 @@ public class Main extends StateBasedGame{
 		
 		try{
 		app = new AppGameContainer(new Main("a"));
-		app.setDisplayMode(800, 600, false);
+		app.setDisplayMode(600, 700, false);
 		app.setTargetFrameRate(60);
 		
 		app.start();
@@ -28,8 +30,7 @@ public class Main extends StateBasedGame{
 
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
-				
-		System.out.println("Hello World");
+		this.addState(new Fase1());
 	}
 
 	
