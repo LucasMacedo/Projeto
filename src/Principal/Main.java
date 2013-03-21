@@ -5,6 +5,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import Fases.Fase1;
+
 public class Main extends StateBasedGame{
 	
 	public static void main(String[] args){
@@ -27,10 +29,12 @@ public class Main extends StateBasedGame{
 	}
 
 	@Override
+
 	public void initStatesList(GameContainer gc) throws SlickException {
 		
 		this.addState(new MenuMain());
 		this.addState(new MenuOpcoes());
+		this.addState(new Fase1());
 		
 	}
 
