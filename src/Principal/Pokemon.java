@@ -33,6 +33,21 @@ public class Pokemon extends GameObject{
 		///// mudar
 		
 		try{
+			if(tipo.equals("Inimigo")){
+				this.animacaoCima = new Animacao(300);
+				this.animacaoCima.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Up.png"));
+				this.animacaoCima.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Up2.png"));
+			}else{
+				this.animacaoBaixo = new Animacao(300);
+				this.animacaoBaixo.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Down.png"));
+				this.animacaoBaixo.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Down2.png"));
+			}
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+		
+		
+		try{
 			if(tipo.equals("Player")){
 				this.animacaoCima = new Animacao(300);
 				this.animacaoCima.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Up.png"));
@@ -46,11 +61,18 @@ public class Pokemon extends GameObject{
 			System.out.println(ex);
 		}
 		
+		
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta) {
 		if(this.tipo.equals("Player")){
+			this.animacaoCima.update();
+		}else{
+			this.animacaoBaixo.update();
+		}
+		
+		if(this.tipo.equals("Inimigo")){
 			this.animacaoCima.update();
 		}else{
 			this.animacaoBaixo.update();
@@ -64,6 +86,13 @@ public class Pokemon extends GameObject{
 		}else{
 			this.animacaoBaixo.render(this.x, this.y, 1, true);
 		}
+		
+		if(this.tipo.equals("Inimigo")){
+			this.animacaoCima.render(this.x, this.y, 1, true);
+		}else{
+			this.animacaoBaixo.render(this.x, this.y, 1, true);
+		}
+		
 	}
 
 	public int getId() {
