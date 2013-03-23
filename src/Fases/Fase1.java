@@ -33,7 +33,7 @@ public class Fase1 extends BasicGameState{
 		pokemon = new Pokemon(1, "Bulbasaur", "Player");
 		pokinimigo = new Pokemon(1,"Bulbasaur","Inimigo");
 		this.player = new Player(pokemon, 100, 100);
-		this.inimigo = new Inimigo(pokinimigo, 100, 100);
+		this.inimigo = new Inimigo(pokinimigo);
 	}
 
 	@Override

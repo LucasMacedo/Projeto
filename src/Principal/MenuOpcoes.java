@@ -12,31 +12,74 @@ public class MenuOpcoes extends BasicGameState {
 	public static final int ID = 2;
 	GameContainer gc;
 	StateBasedGame game;
-	String[] opcao = {"Volume","Tela","Voltar"};
-	int select;
-	
-	
+	String[] opcao = { "Volume", "Tela", "Voltar" };
+	String[] volume = { "Musica", "Audio" };
+	String[] tela = { "FullScreen", "Resolução" };
+	int select, selVolume, selTela;
+	boolean boolVolume, boolTela = false;
+	boolean boolOpcao = true;
+
 	@Override
-	public void init(GameContainer gc, StateBasedGame game)	throws SlickException {
+	public void init(GameContainer gc, StateBasedGame game)
+			throws SlickException {
 		this.gc = gc;
-		this.game = game;		
+		this.game = game;
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
-		
-		for(int i = 0; i < this.opcao.length; i++){
-			g.drawString(this.opcao[i], gc.getWidth()/2, gc.getHeight()/2 +(40 * i));
-			
-			if(i == this.select){
-				g.drawRect(gc.getWidth()/2, gc.getHeight()/2 + (40 * i), 100, 20);
+
+		// Desenha Opções
+		for (int i = 0; i < this.opcao.length; i++) {
+			g.drawString(this.opcao[i], gc.getWidth() / 2 - 100, gc.getHeight()
+					/ 2 + (150 * i) - 300);
+
+			if (boolOpcao) {
+				if (i == this.select) {
+					g.drawRect(gc.getWidth() / 2 - 120, gc.getHeight() / 2
+							+ (150 * i) - 300, 100, 20);
+				}
 			}
 		}
+
+		// Desenha Volume
+
+		for (int f = 0; f < this.volume.length; f++) {
+			g.drawString(this.volume[f], gc.getWidth() / 2 - 60, gc.getHeight()
+					/ 2 + (50 * f) - 250);
+
+			if (boolVolume) {
+				if (f == this.selVolume) {
+					g.drawRect(gc.getWidth() / 2 - 80, 100 + (50 * f), 100, 20);
+				}
+				if (this.volume[f].equals("Musica")) {
+					g.drawRect(gc.getWidth() / 2 + 50,
+							gc.getHeight() / 2 - 250, 100, 20);
+					g.fillRect(gc.getWidth() / 2 + 50,
+							gc.getHeight() / 2 - 250,
+							gc.getSoundVolume() * 100, 20);
+				}
+				if (this.volume[f].equals("Audio")) {
+					g.drawRect(gc.getWidth() / 2 + 50,
+							gc.getHeight() / 2 - 200, 100, 20);
+					g.fillRect(gc.getWidth() / 2 + 50,
+							gc.getHeight() / 2 - 200,
+							gc.getMusicVolume() * 100, 20);
+				}
+			}
+		}
+
+		for (int i = 0; i < this.tela.length; i++) {
+			g.drawString(this.tela[i], gc.getWidth() / 2 - 60, gc.getHeight()
+					/ 2 + (50 * i) - 100);
+		}
+
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame game, int i) throws SlickException {
-		
+	public void update(GameContainer gc, StateBasedGame game, int i)
+			throws SlickException {
+
 	}
 
 	@Override
@@ -44,37 +87,65 @@ public class MenuOpcoes extends BasicGameState {
 		return ID;
 	}
 
-	public void keyPressed(int key,char c){
-		
-		if(key == Input.KEY_UP){
-			this.select--;
-			if(this.select < 0){
-				this.select = this.opcao.length -1;
+	public void keyPressed(int key, char c) {
+
+		if (key == Input.KEY_UP) {
+
+			if (boolOpcao) {
+				this.select--;
+				if (this.select < 0) {
+					this.select = this.opcao.length - 1;
+				}
 			}
+
+			if (boolVolume) {
+				this.selVolume--;
+				if (this.selVolume < 0) {
+					this.selVolume = this.volume.length - 1;
+				}
+			}
+
 		}
-	
-		if(key == Input.KEY_DOWN){
+
+		if (key == Input.KEY_DOWN) {
 			this.select++;
-			if(this.select >= this.opcao.length){
+			if (this.select >= this.opcao.length) {
 				this.select = 0;
 			}
-		}
-	
-		if(key == Input.KEY_ENTER){
-			if(this.opcao[this.select].equals("Volume")){
-				System.out.println("Volume");
+
+			if (boolVolume) {
+				this.selVolume++;
+				if (this.selVolume >= this.volume.length) {
+					this.selVolume = 0;
+				}
 			}
-			
-			else if(this.opcao[this.select].equals("Tela")){
+
+		}
+
+		if (key == Input.KEY_ENTER) {
+			if (this.opcao[this.select].equals("Volume")) {
+				this.boolOpcao = false;
+				this.boolTela = false;
+				this.boolVolume = true;
+			}
+
+			else if (this.opcao[this.select].equals("Tela")) {
 				System.out.println("Tela");
 			}
-			
-			else if(this.opcao[this.select].equals("Voltar")){
+
+			else if (this.opcao[this.select].equals("Voltar")) {
 				this.game.enterState(new MenuMain().getID());
 			}
 		}
 		
-	
+		
+		if (key == Input.KEY_ESCAPE){
+			this.boolOpcao = true;
+			this.boolVolume = false;
+			this.boolTela = false;
+		}
+		
+
 	}
-	
+
 }

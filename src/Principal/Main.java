@@ -13,7 +13,7 @@ public class Main extends StateBasedGame{
 		AppGameContainer app;
 		
 		try{
-		app = new AppGameContainer(new Main("a"));
+		app = new AppGameContainer(new Main("Projeto"));
 		app.setDisplayMode(600, 700, false);
 		app.setTargetFrameRate(60);
 		

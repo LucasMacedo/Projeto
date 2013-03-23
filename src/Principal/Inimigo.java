@@ -1,5 +1,6 @@
 package Principal;
 
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
@@ -7,12 +8,12 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Inimigo{
 
 	Pokemon pokemon;
-	int x , y;
+    int x = (int) (10 +(Math.random() * 600));  
 	
-	public Inimigo(Pokemon pokemon, int x, int y){
+	public Inimigo(Pokemon pokemon){
 		this.pokemon = pokemon;
 		this.pokemon.setX(x);
-		this.pokemon.setY(y);
+		this.pokemon.setY(0);
 	}
 	
 	public void update(GameContainer gc, StateBasedGame game, int delta) {
@@ -28,10 +29,11 @@ public class Inimigo{
 	
 		int getY = this.pokemon.getY();
 	if(getY == 700){
-		this.pokemon.setY(1);
+		this.pokemon.setX((int) (10+(Math.random()*600)));
+		this.pokemon.setY(0);
 		
 	}else{
-		y = this.pokemon.getY();
+		int y = this.pokemon.getY();
 		y = y + 1;
 		this.pokemon.setY(y);
 	}
