@@ -6,6 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Fases.Fase1;
+import Telas.MenuMain;
+import Telas.MenuOpcoes;
 
 public class Main extends StateBasedGame{
 	
