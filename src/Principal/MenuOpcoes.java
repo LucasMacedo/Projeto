@@ -27,7 +27,8 @@ public class MenuOpcoes extends BasicGameState {
 	}
 
 	@Override
-	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
+	public void render(GameContainer gc, StateBasedGame game, Graphics g)
+			throws SlickException {
 
 		// Desenha Opções
 		for (int i = 0; i < this.opcao.length; i++) {
@@ -69,9 +70,13 @@ public class MenuOpcoes extends BasicGameState {
 			}
 		}
 
+		
+		// Desenha Tela
+		
 		for (int i = 0; i < this.tela.length; i++) {
 			g.drawString(this.tela[i], gc.getWidth() / 2 - 60, gc.getHeight()
 					/ 2 + (50 * i) - 100);
+			g.drawRect(gc.getWidth() / 2 - 60, gc.getHeight()/2 + (50 * i) - 100, 100,20);
 		}
 
 	}
@@ -104,21 +109,40 @@ public class MenuOpcoes extends BasicGameState {
 					this.selVolume = this.volume.length - 1;
 				}
 			}
+			
+			if (boolTela){
+				this.selTela++;
+				if(this.selTela < 0){
+					this.selTela = this.tela.length - 1;
+				}
+			}
+			
 
 		}
 
 		if (key == Input.KEY_DOWN) {
-			this.select++;
-			if (this.select >= this.opcao.length) {
-				this.select = 0;
+			if (boolOpcao) {
+				this.select++;
+				if (this.select >= this.opcao.length) {
+					this.select = 0;
+				}
 			}
-
+			
 			if (boolVolume) {
 				this.selVolume++;
 				if (this.selVolume >= this.volume.length) {
 					this.selVolume = 0;
 				}
 			}
+			
+			if (boolTela){
+				this.selTela++;
+				if(this.selTela >= this.tela.length){
+					this.selTela = 0;
+				}
+			}
+			
+			
 
 		}
 
@@ -130,21 +154,21 @@ public class MenuOpcoes extends BasicGameState {
 			}
 
 			else if (this.opcao[this.select].equals("Tela")) {
-				System.out.println("Tela");
+				this.boolOpcao = false;
+				this.boolTela = true;
+				this.boolVolume = false;
 			}
 
 			else if (this.opcao[this.select].equals("Voltar")) {
 				this.game.enterState(new MenuMain().getID());
 			}
 		}
-		
-		
-		if (key == Input.KEY_ESCAPE){
+
+		if (key == Input.KEY_ESCAPE || key == Input.KEY_BACK) {
 			this.boolOpcao = true;
 			this.boolVolume = false;
 			this.boolTela = false;
 		}
-		
 
 	}
 
