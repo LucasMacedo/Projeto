@@ -18,6 +18,7 @@ public class Player{
 	public void update(GameContainer gc, StateBasedGame game, int delta) {
 		this.input(gc.getInput());
 		this.pokemon.update(gc, game, delta);
+		this.verificaLimites();
 	}
 
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) {
@@ -41,7 +42,27 @@ public class Player{
 		if(input.isKeyDown(Input.KEY_SPACE)){
 			//this.ataca();
 		}
+	}
+	
+	public void verificaLimites(){
+		
+		if(this.pokemon.getX() < 0){
+			this.pokemon.setX(0);
+		}
+		
+		else if (this.pokemon.getX() > 600){
+			this.pokemon.setX(600);
+		}
+		
+		if(this.pokemon.getY() < 0){
+			this.pokemon.setY(0);
+		}
+		
+		else if (this.pokemon.getY() > 700){
+			this.pokemon.setY(700);
+		}
 		
 		
 	}
+	
 }

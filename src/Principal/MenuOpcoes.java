@@ -58,25 +58,29 @@ public class MenuOpcoes extends BasicGameState {
 							gc.getHeight() / 2 - 250, 100, 20);
 					g.fillRect(gc.getWidth() / 2 + 50,
 							gc.getHeight() / 2 - 250,
-							gc.getSoundVolume() * 100, 20);
+							gc.getMusicVolume() * 100, 20);
 				}
 				if (this.volume[f].equals("Audio")) {
 					g.drawRect(gc.getWidth() / 2 + 50,
 							gc.getHeight() / 2 - 200, 100, 20);
 					g.fillRect(gc.getWidth() / 2 + 50,
 							gc.getHeight() / 2 - 200,
-							gc.getMusicVolume() * 100, 20);
+							gc.getSoundVolume() * 100, 20);
 				}
 			}
 		}
 
-		
 		// Desenha Tela
-		
-		for (int i = 0; i < this.tela.length; i++) {
-			g.drawString(this.tela[i], gc.getWidth() / 2 - 60, gc.getHeight()
-					/ 2 + (50 * i) - 100);
-			g.drawRect(gc.getWidth() / 2 - 60, gc.getHeight()/2 + (50 * i) - 100, 100,20);
+
+		for (int t = 0; t < this.tela.length; t++) {
+			g.drawString(this.tela[t], gc.getWidth() / 2 - 60, gc.getHeight()
+					/ 2 + (50 * t) - 100);
+			if (boolTela) {
+				if (t == this.selTela) {
+					g.drawRect(gc.getWidth() / 2 - 60, gc.getHeight() / 2
+							+ (50 * t) - 100, 100, 20);
+				}
+			}
 		}
 
 	}
@@ -109,14 +113,13 @@ public class MenuOpcoes extends BasicGameState {
 					this.selVolume = this.volume.length - 1;
 				}
 			}
-			
-			if (boolTela){
-				this.selTela++;
-				if(this.selTela < 0){
+
+			if (boolTela) {
+				this.selTela--;
+				if (this.selTela < 0) {
 					this.selTela = this.tela.length - 1;
 				}
 			}
-			
 
 		}
 
@@ -127,23 +130,51 @@ public class MenuOpcoes extends BasicGameState {
 					this.select = 0;
 				}
 			}
-			
+
 			if (boolVolume) {
 				this.selVolume++;
 				if (this.selVolume >= this.volume.length) {
 					this.selVolume = 0;
 				}
 			}
-			
-			if (boolTela){
+
+			if (boolTela) {
 				this.selTela++;
-				if(this.selTela >= this.tela.length){
+				if (this.selTela >= this.tela.length) {
 					this.selTela = 0;
 				}
 			}
-			
-			
 
+		}
+
+		if (key == Input.KEY_LEFT) {
+			if (boolVolume) {
+				if (this.volume[this.selVolume].equals("Musica")) {
+					if (gc.getMusicVolume() > 0) {
+						gc.setMusicVolume(gc.getMusicVolume() - 0.1f);
+					}
+				}
+				if (this.volume[this.selVolume].equals("Audio")) {
+					if (gc.getSoundVolume() > 0) {
+						gc.setSoundVolume(gc.getSoundVolume() - 0.1f);
+					}
+				}
+			}
+		}
+
+		if (key == Input.KEY_RIGHT) {
+			if (boolVolume) {
+				if (this.volume[this.selVolume].equals("Musica")) {
+					if (gc.getMusicVolume() < 1) {
+						gc.setMusicVolume(gc.getMusicVolume() + 0.1f);
+					}
+				}
+				if (this.volume[this.selVolume].equals("Audio")) {
+					if (gc.getSoundVolume() < 1) {
+						gc.setSoundVolume(gc.getSoundVolume() + 0.1f);
+					}
+				}
+			}
 		}
 
 		if (key == Input.KEY_ENTER) {

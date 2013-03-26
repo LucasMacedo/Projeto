@@ -16,6 +16,7 @@ public class Main extends StateBasedGame{
 		app = new AppGameContainer(new Main("Projeto"));
 		app.setDisplayMode(600, 700, false);
 		app.setTargetFrameRate(60);
+		app.setIcon("resources/icone.png");
 		
 		app.start();
 		} catch(SlickException ex){
