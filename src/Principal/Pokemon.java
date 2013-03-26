@@ -15,7 +15,7 @@ public class Pokemon extends GameObject{
 	protected int hp;
 	protected int lvl;
 	
-	String tipo;
+	public String tipo;
 	protected Animacao animacaoCima;
 	protected Animacao animacaoBaixo;
 
