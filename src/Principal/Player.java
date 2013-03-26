@@ -7,7 +7,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Player{
 
-	Pokemon pokemon;
+	public Pokemon pokemon;
+	public boolean atacou;
 	
 	public Player(Pokemon pokemon, int x, int y){
 		this.pokemon = pokemon;
@@ -39,9 +40,11 @@ public class Player{
 		}
 		
 		if(input.isKeyDown(Input.KEY_SPACE)){
-			//this.ataca();
-		}
-		
-		
+			this.ataca();
+		}				
+	}
+	
+	public void ataca(){
+		this.atacou = true;
 	}
 }
