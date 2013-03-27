@@ -8,17 +8,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+import Principal.Pokemon;
 
 public class Acid extends Ataque {
 
     int frameElapsed;
     int frame;
 
-    public Acid(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public Acid(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
 
         this.setContador(0);
         String name = this.toString();
@@ -28,7 +27,7 @@ public class Acid extends Ataque {
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
 
-        this.personagem = personagem;
+        this.pokemon = pokemon;
         this.desativado = false;
         // this.x = x - (this.personagem.spriteAtual.pegaLargura() + 70);
         this.x = x;
@@ -36,11 +35,7 @@ public class Acid extends Ataque {
         this.y = y;
         this.frame = 0;
 
-        this.angulo = (float) angulo;
-
         this.desativado = false;
-
-
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 21, 24);
@@ -52,16 +47,13 @@ public class Acid extends Ataque {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
 
-
-
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
-
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
-
-
-
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dx = this.velocidade;
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dx = -this.velocidade;
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override
@@ -86,23 +78,23 @@ public class Acid extends Ataque {
         // g.fillRect(this.getX(), this.getY(), this.animation.getWidth(), this.animation.getHeight());
     }
 
-    @Override
-    public Rectangle getRetangulo() {
-        return new Rectangle(this.x, this.y, this.animation.getWidth(), this.animation.getHeight());
-    }
+   // @Override
+   // public Rectangle getRetangulo() {
+  //      return new Rectangle(this.x, this.y, this.animation.getWidth(), this.animation.getHeight());
+  //  }
 
-    public boolean temColisao(Rectangle retangulo) {
-        if (this.desativado || this.frame == 4) {
-            return false;
-        }
-
-        if (this.getRetangulo().intersects(retangulo)) {
-            this.desativado = true;
-            return true;
-        } else {
-            return false;
-        }
-    }
+   // public boolean temColisao(Rectangle retangulo) {
+        //if (this.desativado || this.frame == 4) {
+            //return false;
+        //}
+//
+        //if (this.getRetangulo().intersects(retangulo)) {
+            //this.desativado = true;
+            //return true;
+        //} else {
+        //    /return false;
+        //}
+    //}
 
     public int getFrames() {
         return this.frameElapsed;

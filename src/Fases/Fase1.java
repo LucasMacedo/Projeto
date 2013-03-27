@@ -17,7 +17,7 @@ import Ataques.Ember;
 
 public class Fase1 extends BasicGameState{
 	
-	public static final int ID = 3;
+	public static final int ID = 4;
 	StateBasedGame game;
 	Player player;
 	ArrayList<Inimigo> listaInimigos;

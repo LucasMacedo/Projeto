@@ -8,17 +8,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+import Principal.Pokemon;
 
 public class Bite extends Ataque {
 
     int frameElapsed;
     int frame;
 
-    public Bite(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public Bite(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
@@ -27,12 +26,11 @@ public class Bite extends Ataque {
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
 
-        this.personagem = personagem;
+        this.pokemon = pokemon;
         this.desativado = false;
         this.x = x;
         this.y = y;
         this.frame = 0;
-        this.angulo = (float) angulo;
         this.desativado = false;
 
         try {
@@ -44,11 +42,14 @@ public class Bite extends Ataque {
         for (int i = 0; i < 7; i++) {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
-
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
+        
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dx = this.velocidade;
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dx = -this.velocidade;
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override
@@ -66,27 +67,7 @@ public class Bite extends Ataque {
 
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) {
-            g.rotate(this.animation.getCurrentFrame().getCenterOfRotationX() + this.x, this.animation.getCurrentFrame().getCenterOfRotationY() + this.y, -this.angulo);
-            this.animation.draw(this.x, this.y);
-            g.rotate(this.animation.getCurrentFrame().getCenterOfRotationX() + this.x, this.animation.getCurrentFrame().getCenterOfRotationY() + this.y, this.angulo);
-    }
-
-    @Override
-    public Rectangle getRetangulo() {
-        return new Rectangle(this.x, this.y, this.animation.getWidth(), this.animation.getHeight());
-    }
-
-    public boolean temColisao(Rectangle retangulo) {
-        if (this.desativado || this.frame == 4) {
-            return false;
-        }
-
-        if (this.getRetangulo().intersects(retangulo)) {
-            this.desativado = true;
-            return true;
-        } else {
-            return false;
-        }
+        this.animation.draw(this.x, this.y);
     }
 
     public int getFrames() {

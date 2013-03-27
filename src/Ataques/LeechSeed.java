@@ -9,12 +9,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+import Principal.Pokemon;
 
 public class LeechSeed extends Ataque {
 
-    public LeechSeed(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public LeechSeed(int x, int y, int destX, int destY, float angulo, Pokemon personagem) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
@@ -28,9 +28,6 @@ public class LeechSeed extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
-        this.angulo = 0;
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 20, 20);
@@ -41,11 +38,14 @@ public class LeechSeed extends Ataque {
         for (int i = 0; i < 1; i++) {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
-
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
+        
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dx = this.velocidade;
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dx = -this.velocidade;
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override

@@ -9,12 +9,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+import Principal.Pokemon;
 
 public class GunkShot extends Ataque {
 
-    public GunkShot(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public GunkShot(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
@@ -23,11 +23,10 @@ public class GunkShot extends Ataque {
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
 
-        this.personagem = personagem;
+        this.pokemon = pokemon;
         this.desativado = false;
         this.x = x;
         this.y = y;
-        this.angulo = (float) angulo;
         this.desativado = false;
 
         try {
@@ -40,10 +39,13 @@ public class GunkShot extends Ataque {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
 
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dx = this.velocidade;
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dx = -this.velocidade;
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override

@@ -53,7 +53,7 @@ public abstract class Ataque extends GameObject {
         return this.danoBruto;
     }
 
-    public Rectangle getRectangle() {
+    public Rectangle getRectangulo() {
         if (this.imagem != null) {
             Rectangle rect = new Rectangle((int) this.x, (int) this.y, this.imagem.getWidth(), this.imagem.getHeight());
             return rect;

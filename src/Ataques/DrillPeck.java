@@ -8,12 +8,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+import Principal.Pokemon;
 
 public class DrillPeck extends Ataque {
 
-    public DrillPeck(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public DrillPeck(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
@@ -27,9 +27,6 @@ public class DrillPeck extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
-        this.angulo = angulo;
 
         try {
             this.imagem = new Image("resources/ataques/" + name + "/" + name + ".png");
@@ -37,12 +34,13 @@ public class DrillPeck extends Ataque {
             JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
         }
 
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
-        
-        this.imagem.rotate(-angulo);
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dx = this.velocidade;
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dx = -this.velocidade;
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override
