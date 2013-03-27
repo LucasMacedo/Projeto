@@ -1,5 +1,6 @@
 
 
+
 insert into jogador (nome) values ('Admin');
 
 
@@ -25,8 +26,6 @@ insert into elemento (elemento) values
 ('Ghost'),
 ('Dark'),
 ('Steel');
-
-
 
 
 
@@ -95,6 +94,7 @@ insert into ataque (nome, atk, elemento) values
 
 ('FlameThrower', 95, 3),
 ('HyperVoice', 90, 2);
+
 
 
 
@@ -217,6 +217,7 @@ insert into pokemon (id, nome, raridade, atkBase, defBase, spdBase, hpBase, lvlQ
 
 
 
+
 insert into pokemonLiberado (idJogador, idPokemon, atk, def, spd, hp,lvl,exp) values
 
 (1, 1, 49, 49, 45, 45,1,0),
@@ -232,7 +233,8 @@ insert into pokemonLiberado (idJogador, idPokemon, atk, def, spd, hp,lvl,exp) va
 
 insert into pokemonDerrotado (idPokemon, vezesDerrotado) values
 
-(''),
+
+
 (1, 0),
 
 (2, 0),
@@ -312,6 +314,8 @@ insert into pokemonDerrotado (idPokemon, vezesDerrotado) values
 (39, 0),
 
 (40, 0);
+
+
 
 
 
@@ -414,7 +418,9 @@ insert into bonusDeElemento (elemento, elementoMultiplicador, multiplicador) val
 (8, 8, 0.5),
 
 (8, 12, 0.5);
+
 --
+
 
 
 
@@ -624,8 +630,4 @@ insert into experiencia (lvl, exp) values
 (99, 591882),
 
 (100, 600000);
-
-
-
-
 

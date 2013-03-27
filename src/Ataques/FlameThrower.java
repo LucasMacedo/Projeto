@@ -10,12 +10,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+import Principal.Pokemon;
 
 public class FlameThrower extends Ataque {
 
-    public FlameThrower(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public FlameThrower(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
@@ -24,17 +24,14 @@ public class FlameThrower extends Ataque {
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
 
-        this.personagem = personagem;
+        this.pokemon = pokemon;
         this.desativado = false;
         this.xInicial = x;
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
         this.velocidade = 10;
 
-        this.angulo = (float) angulo;
         this.desativado = false;
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 215, 65);
@@ -63,9 +60,7 @@ public class FlameThrower extends Ataque {
         if (this.animation.isStopped()) {
             return;
         }
-        g.rotate(this.animation.getCurrentFrame().getCenterOfRotationX() + this.x, this.animation.getCurrentFrame().getCenterOfRotationY() + this.y, this.angulo);
         this.animation.draw(this.x, this.y);
-        g.rotate(this.animation.getCurrentFrame().getCenterOfRotationX() + this.x, this.animation.getCurrentFrame().getCenterOfRotationY() + this.y, -this.angulo);
 
     }
 

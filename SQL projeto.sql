@@ -1,5 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS tcc DEFAULT CHARACTER SET latin1 ;
-USE tcc;
+
 
 CREATE  TABLE IF NOT EXISTS elemento (
   id IDENTITY ,
@@ -96,6 +95,5 @@ CREATE  TABLE IF NOT EXISTS bonusDeElemento (
   PRIMARY KEY (elemento, elementoMultiplicador) ,
     FOREIGN KEY (elemento ) REFERENCES elemento (id),
     FOREIGN KEY (elementoMultiplicador ) REFERENCES elemento (id));
-
 
 

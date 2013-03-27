@@ -9,14 +9,14 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+import Principal.Pokemon;
 
 public class EarthQuake extends Ataque {
 
-    public EarthQuake(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public EarthQuake(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
-        this.personagem = personagem;
+        this.pokemon = pokemon;
 
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
@@ -41,8 +41,8 @@ public class EarthQuake extends Ataque {
 
         this.x -= this.animation.getCurrentFrame().getWidth() / 2;
         this.y -= this.animation.getCurrentFrame().getHeight() / 2;
-        this.x += this.personagem.animacaoAtual.getImage().getWidth() / 2;
-        this.y += this.personagem.animacaoAtual.getImage().getHeight() / 2;
+        this.x += this.pokemon.animacaoAtual.getImage().getWidth() / 2;
+        this.y += this.pokemon.animacaoAtual.getImage().getHeight() / 2;
     }
 
     @Override

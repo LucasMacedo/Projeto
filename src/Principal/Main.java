@@ -4,10 +4,8 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
-import Fases.Fase1;
-import Telas.MenuMain;
-import Telas.MenuOpcoes;
+import Fases.*;
+import Telas.*;
 
 public class Main extends StateBasedGame{
 	
@@ -37,6 +35,7 @@ public class Main extends StateBasedGame{
 		
 		this.addState(new MenuMain());
 		this.addState(new MenuOpcoes());
+		this.addState(new CharacterSelect());
 		this.addState(new Fase1());
 		
 	}
