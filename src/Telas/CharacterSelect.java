@@ -22,7 +22,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import util.Util;
+
 
 /**
  *
@@ -66,7 +66,7 @@ public class CharacterSelect extends BasicGameState {
 
     @Override
     public int getID() {
-        return this.ID;
+        return ID;
     }
 
     @Override
@@ -88,17 +88,19 @@ public class CharacterSelect extends BasicGameState {
         this.pokemonsPrimeiraLinha = new ArrayList<Pokemon>();
         this.pokemonsSegundaLinha = new ArrayList<Pokemon>();
         this.pokemonsTerceiraLinha = new ArrayList<Pokemon>();
-        for (int i = 0; i < 9; i++) {
+       
+        
+        for (int i = 0; i < 6; i++) {
             this.pokemonsPrimeiraLinha.add(this.listaDePokemon.get(i));
         }
-        for (int i = 0; i < 9; i++) {
-            this.pokemonsSegundaLinha.add(this.listaDePokemon.get(i + 9));
+        for (int i = 0; i < 6; i++) {
+            this.pokemonsSegundaLinha.add(this.listaDePokemon.get(i + 6));
         }
-        for (int i = 0; i < 9; i++) {
-            this.pokemonsTerceiraLinha.add(this.listaDePokemon.get(i + 18));
+        for (int i = 0; i < 6; i++) {
+            this.pokemonsTerceiraLinha.add(this.listaDePokemon.get(i + 12));
         }
         
-        this.numLinhas = ((this.listaDePokemon.size() + 1) / 9) + 1;
+        this.numLinhas = ((this.listaDePokemon.size() + 1) / 6) + 1;
 
         this.cenario = new Image("resources/fundo CharSelect.png");
 
@@ -117,7 +119,7 @@ public class CharacterSelect extends BasicGameState {
 
         g.setColor(Color.white);
         //   g.drawString(" Player 1, escolha o personagem !!", 250, 290);
-        g.drawString("Pressione o botão 'BACKSPACE' para voltar", gc.getWidth() / 2 - g.getFont().getWidth("Pressione o botão 'BACKSPACE' para voltar") / 2, 565);
+        g.drawString("Pressione o botão 'BACKSPACE' para voltar", gc.getWidth() / 2 - g.getFont().getWidth("Pressione o botão 'BACKSPACE' para voltar") / 2, 680);
 
         this.desenhaFundo(gc, g);
         this.desenhaImagens(gc, g);
@@ -137,7 +139,7 @@ public class CharacterSelect extends BasicGameState {
             if(this.ySelecionado > 1){
             this.somMove.play();
             this.ySelecionado--;
-            this.pokemonSelecionado -= 9;
+            this.pokemonSelecionado -= 6;
             if (this.linha == 1) {
                 if (this.ySelecionado <= 0) {
 //                    this.ySelecionado = this.totalLinhas;
@@ -165,14 +167,14 @@ public class CharacterSelect extends BasicGameState {
                     this.pokemonsPrimeiraLinha.clear();
                     this.pokemonsSegundaLinha.clear();
                     this.pokemonsTerceiraLinha.clear();
-                    for (int i = 0; i < 9; i++) {
-                        this.pokemonsPrimeiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha) * 9)))));
+                    for (int i = 0; i < 6; i++) {
+                        this.pokemonsPrimeiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha) * 6)))));
                     }
-                    for (int i = 0; i < 9; i++) {
-                        this.pokemonsSegundaLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 1) * 9)))));
+                    for (int i = 0; i < 6; i++) {
+                        this.pokemonsSegundaLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 1) * 6)))));
                     }
-                    for (int i = 0; i < 9; i++) {
-                        this.pokemonsTerceiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 2) * 9)))));
+                    for (int i = 0; i < 6; i++) {
+                        this.pokemonsTerceiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 2) * 6)))));
                     }
 //////                    this.pokemonsTerceiraLinha = this.pokemonsSegundaLinha;
 //////                    this.pokemonsSegundaLinha = this.pokemonsPrimeiraLinha;
@@ -194,7 +196,7 @@ public class CharacterSelect extends BasicGameState {
                 this.somMove.play();
 
                 this.ySelecionado++;
-                this.pokemonSelecionado += 9;
+                this.pokemonSelecionado += 6;
                 System.out.println(ySelecionado + " - linha: " + this.linha);
                 if (this.linha == 3) {
                     if (this.ySelecionado > this.totalLinhas) {
@@ -219,14 +221,14 @@ public class CharacterSelect extends BasicGameState {
                         this.pokemonsPrimeiraLinha.clear();
                         this.pokemonsSegundaLinha.clear();
                         this.pokemonsTerceiraLinha.clear();
-                        for (int i = 0; i < 9; i++) {
-                            this.pokemonsPrimeiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha) * 9)))));
+                        for (int i = 0; i < 6; i++) {
+                            this.pokemonsPrimeiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha) * 6)))));
                         }
-                        for (int i = 0; i < 9; i++) {
-                            this.pokemonsSegundaLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 1) * 9)))));
+                        for (int i = 0; i < 6; i++) {
+                            this.pokemonsSegundaLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 1) * 6)))));
                         }
-                        for (int i = 0; i < 9; i++) {
-                            this.pokemonsTerceiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 2) * 9)))));
+                        for (int i = 0; i < 6; i++) {
+                            this.pokemonsTerceiraLinha.add(this.listaDePokemon.get(((i + ((this.ySelecionado - linha + 2) * 6)))));
                         }
                     }
                 }
@@ -244,8 +246,8 @@ public class CharacterSelect extends BasicGameState {
             this.xSelecionado--;
             this.pokemonSelecionado--;
             if (this.xSelecionado <= 0) {
-                this.xSelecionado = 9;
-                this.pokemonSelecionado += 9;
+                this.xSelecionado = 6;
+                this.pokemonSelecionado += 6;
             }
             this.xDraw = this.xSelecionado * 75 - 5;
 
@@ -254,9 +256,9 @@ public class CharacterSelect extends BasicGameState {
             this.somMove.play();
             this.xSelecionado++;
             this.pokemonSelecionado++;
-            if (this.xSelecionado > 9) {
+            if (this.xSelecionado > 6) {
                 this.xSelecionado = 1;
-                this.pokemonSelecionado -= 9;
+                this.pokemonSelecionado -= 6;
             }
             this.xDraw = this.xSelecionado * 75 - 5;
         }

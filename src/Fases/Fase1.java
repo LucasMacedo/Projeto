@@ -15,7 +15,7 @@ import Principal.Pokemon;
 import Telas.CharacterSelect;
 
 import Ataques.Ember;
-import DAO.PokemonDAO;
+
 
 public class Fase1 extends BasicGameState{
 	
@@ -39,8 +39,9 @@ public class Fase1 extends BasicGameState{
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame game)throws SlickException {
-		this.game = game;
 		this.inicializa();
+		this.game = game;
+		
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public class Fase1 extends BasicGameState{
 	}
 	
 	public void inicializa(){
-		pokemon = new Pokemon(this.charSelect.getIdPokemonPlayer1(), this.charSelect.getPlayer1(), "Player");
+		pokemon = new Pokemon(this.charSelect.idPokemonPlayer1, this.charSelect.getPlayer1(), "Player");
 		pokemonInimigo = new Pokemon(1,"Bulbasaur","Inimigo");
 		this.player = new Player(pokemon, 100, 100);
 		this.inimigo = new Inimigo(pokemonInimigo);
