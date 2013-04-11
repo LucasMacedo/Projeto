@@ -27,9 +27,11 @@ public class Fase1 extends BasicGameState{
 	ArrayList<Ataque> ataquesPlayer, ataquesInimigo;
 	Pokemon pokemon, pokemonInimigo;
 	Inimigo inimigo;
+	boolean inicializou = false;
 
 	public Fase1(CharacterSelect charSelect){
 		this.charSelect = charSelect;
+		System.out.println("FASE1 - "+charSelect.player1);
 	}
 	
 	@Override
@@ -39,13 +41,12 @@ public class Fase1 extends BasicGameState{
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame game)throws SlickException {
-		this.inicializa();
 		this.game = game;
-		
+
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame game, int i)throws SlickException {
+	public void update(GameContainer gc, StateBasedGame game, int i)throws SlickException {		
 		this.player.update(gc, game, i);
 		this.inimigo.update(gc, game, i);
 		
@@ -54,6 +55,9 @@ public class Fase1 extends BasicGameState{
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)throws SlickException {
+		if(!inicializou){
+			this.inicializa();
+		}
 		this.player.render(gc, game, g);
 		this.inimigo.render(gc, game, g);
 		
@@ -67,13 +71,16 @@ public class Fase1 extends BasicGameState{
 	}
 	
 	public void inicializa(){
-		pokemon = new Pokemon(this.charSelect.idPokemonPlayer1, this.charSelect.getPlayer1(), "Player");
+
+		System.out.println("ERRO - " + this.charSelect.getPlayer1());
+		pokemon = new Pokemon(this.charSelect.getIdPokemonPlayer1(), this.charSelect.getPlayer1(), "Player");
 		pokemonInimigo = new Pokemon(1,"Bulbasaur","Inimigo");
 		this.player = new Player(pokemon, 100, 100);
 		this.inimigo = new Inimigo(pokemonInimigo);
 		
 		this.ataquesPlayer = new ArrayList<Ataque>();
 		this.ataquesInimigo = new ArrayList<Ataque>();
+		this.inicializou = true;
 	}
 	
 	public void lancaAtaques(){

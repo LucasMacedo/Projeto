@@ -57,9 +57,9 @@ public class CharacterSelect extends BasicGameState {
     ArrayList<Pokemon> pokemonsTerceiraLinha;
     int totalLinhas = 5;
 
-    public CharacterSelect() {
+    public CharacterSelect(String p1) {
         this.ySelecionado = 1;
-        this.player1 = "";
+        this.player1 = p1;
         this.xDraw = 70;
         this.yDraw = 70 + 260;
     }
@@ -282,7 +282,7 @@ public class CharacterSelect extends BasicGameState {
                 this.player1 = this.nomes.get(this.pokemonSelecionado);
                 this.idPokemonPlayer1 = pl.getIdPokemon();
 
-        		System.out.println(this.getPlayer1());
+        		System.out.println("CHAR SELECT - "+this.nomes.get(this.pokemonSelecionado));
                 game.enterState(Fase1.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
         }

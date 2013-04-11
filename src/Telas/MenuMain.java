@@ -72,7 +72,7 @@ public class MenuMain extends BasicGameState {
 			}
 			
 			if (this.opcao[this.selected].equals("Opções")){
-				this.game.enterState(new MenuOpcoes().getID());
+				this.game.enterState(MenuOpcoes.ID);
 			}
 			
 			

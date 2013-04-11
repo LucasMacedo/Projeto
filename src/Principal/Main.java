@@ -33,7 +33,7 @@ public class Main extends StateBasedGame{
 
 	public void initStatesList(GameContainer gc) throws SlickException {
 		
-		CharacterSelect charSelect = new CharacterSelect();
+		CharacterSelect charSelect = new CharacterSelect("Bulbasaur");
 		
 		this.addState(new MenuMain());
 		this.addState(new MenuOpcoes());
