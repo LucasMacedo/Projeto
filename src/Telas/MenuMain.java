@@ -70,11 +70,11 @@ public class MenuMain extends BasicGameState {
  		
 		if (key == Input.KEY_ENTER){
 			if(this.opcao[this.selected].equals("Iniciar")){
-				this.game.enterState(new CharacterSelect().getID());
+				this.game.enterState(CharacterSelect.ID);
 			}
 			
 			if (this.opcao[this.selected].equals("Opções")){
-				this.game.enterState(new MenuOpcoes().getID());
+				this.game.enterState(MenuOpcoes.ID);
 			}
 			
 			
