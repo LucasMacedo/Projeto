@@ -33,7 +33,8 @@ public class CharacterSelect extends BasicGameState {
     public static final int ID = 3;
     StateBasedGame game;
     private Image cenario; //imagem de fundo
-    static String player1; //qual personagem o player escolheu
+    public String player1; //qual personagem o player escolheu
+    public int idPokemonPlayer1;
     private String inimigo; //qual personagem o inimigo escolheu
     private int xSelecionado = 1; //qual pokemon esta selecionado na horizontal(de 1 ate 9)
     private int ySelecionado = 1; //qual pokemon esta selecionado na vertical(de 1 ate 3)
@@ -99,7 +100,7 @@ public class CharacterSelect extends BasicGameState {
         
         this.numLinhas = ((this.listaDePokemon.size() + 1) / 9) + 1;
 
-        this.cenario = new Image("resources/Cenario/fundo CharSelect.png");
+        this.cenario = new Image("resources/fundo CharSelect.png");
 
         this.somSelect = new Sound("resources/sounds/misc/select.wav");
         this.somMove = new Sound("resources/sounds/misc/move.wav");
@@ -277,7 +278,9 @@ public class CharacterSelect extends BasicGameState {
                     Logger.getLogger(CharacterSelect.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 this.player1 = this.nomes.get(this.pokemonSelecionado);
-               
+                this.idPokemonPlayer1 = pl.getIdPokemon();
+
+        		System.out.println(this.getPlayer1());
                 game.enterState(Fase1.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
         }
@@ -324,131 +327,14 @@ public class CharacterSelect extends BasicGameState {
 
 
         g.setColor(Color.lightGray);
-        g.fillRect(75, 40, 670, 10);//cima
-        g.fillRect(75, 200, 670, 95);//baixo
+        g.fillRect(75, 40, 475, 10);//cima
+        g.fillRect(75, 200, 475, 95);//baixo
         g.fillRect(75, 40, 200, 220);//esquerda
-        g.fillRect(525, 40, 220, 220);//direita
+        g.fillRect(325, 40, 220, 220);//direita
 
         g.setColor(Color.decode("1996553984"));
         g.drawRect(gc.getWidth() / 2 - 250 / 2, 50, 250, 150);
         g.setColor(Color.white);
-    }
-
-    public void desenhaImagensVelho(GameContainer gc, Graphics g) throws SlickException {
-        g.setColor(Color.white);
-
-        int x1 = 0; //x da imagem que sera desenhada(desenha todos os pokemons como nao-liberados)
-        int y1 = 260; //y da imagem que sera desenhada(desenha todos os pokemons como nao-liberados)
-        int cont1 = 0; //contador que verifica se já foram desenhados 9 pokemons na linha(nao-liberados)
-        int cont2 = 1; //contador que verifica s já foram desenhados 9 pokemons na linha(liberados)
-        int x2 = 0; //x da imagem que sera desenhada(desenha todos os pokemons liberados)
-        int y2 = 260; //y da imagem que sera desenhada(desenha todos os pokemons liberados)
-
-
-        //se a linha selecionada pelo retangulo de selecao for maior que 3(abaixo da terceira)
-        //modifica o y para fazer com que as imagens vão para cima
-        if (this.linha > 3) {
-            y1 -= 75 * (this.linha - 3);
-            y2 -= 75 * (this.linha - 3);
-        }
-
-        //desenha todos os pokemons
-        for (Pokemon pokemon : this.listaDePokemon) {
-            cont1++; //aumenta o cont
-            if (cont1 > 9) {
-                //se o cont for maior que 9, quer dizer que ja desenhou 9 pokemons nessa linha
-                //entao passa para a proxima
-                cont1 = 1;
-                x1 = 0;
-                y1 += 75;
-            }
-
-            String nome = pokemon.getNome(); //pega o nome do pokemon a desenhar
-            //cria a imagem do pokemon   
-            this.pokemonImage = new Image("resources/personagens/" + pokemon.getId() + " - " + nome + "/" + nome + "_Locked.png");
-            //se o y do pokemon estiver dentro do especificado
-            //quer dizer que ele esta em uma das tres linhas
-            //entao desenha
-            if (!(75 + y1 <= 300 || 75 + y1 > 500)) {
-                this.pokemonImage.drawCentered(110 + x1, 110 + y1);
-            }
-
-            x1 += 75; //aumenta o x para desenhar o proximo pokemon 75px a direita
-
-        }
-
-
-
-
-
-        //desenha os pokemons liberados
-        for (PokemonLiberado pl : this.listaDePokemonLiberado) {
-
-            //se o numero do pokemon for maior que 9*cont2
-            //por exemplo: se o numero for 15
-            //15 é maior que 9*cont2(inicialmente = 1)
-            //ou seja, 15 é maior que 9
-            //entao aumenta em um o cont2, zera o x2 e aumenta em 75 o y2
-            //isso quer dizer que nao tem mais pokemon liberado para desenhar nessa linha
-            if (pl.getIdPokemon() > 9 * cont2) {
-                cont2++;
-                x2 = 0;
-                y2 += 75;
-            }
-
-            //pega o nome do pokemon
-            String nome = pl.getNome();
-
-            //cria a imagem
-            this.pokemonImage = new Image("resources/personagens/" + pl.getIdPokemon() + " - " + nome + "/" + nome + "_Down.png");
-
-
-            //se o y do pokemon estiver dentro do especificado
-            //quer dizer que ele esta em uma das tres linhas
-            //entao desenha
-            if (!(75 + y2 <= 300 || 75 + y2 > 500)) {
-                this.pokemonImage.drawCentered(110 + x2 * (pl.getIdPokemon() - 1), 110 + y2);
-            }
-            x2 = 75; //aumenta o x para desenhar o proximo pokemon 75px a direita
-        }
-
-
-
-
-        //desenha o pokemon com zoom para aparecer na parte superior da tela
-        //    PokemonLiberado pl = this.listaDePokemonLiberado.get(this.pokemonSelecionado);//id, nao index ta lista
-        //PokemonLiberado pl = PokemonLiberadoDAO.getPokemon(this.pokemonSelecionado + 1); //pega o pokemon que esta selecionado(apenas os liberados)
-        //Pokemon poke = PokemonDAO.getPokemon(this.pokemonSelecionado + 1); //pega o pokemon que esta selecionado
-        Pokemon poke = this.listaDePokemon.get(this.pokemonSelecionado);
-
-        //if (pl.getIdPokemon() != 0) { //se a busca do dao retornar resultado, desenha a imagem colorida
-        if (this.nomesLiberados.contains(this.nomes.get(this.pokemonSelecionado))) { //se a busca do dao retornar resultado, desenha a imagem colorida
-//            this.imgGrande = new Image("resources/personagens/" + pl.getIdPokemon() + " - " + pl.getNome() + "/" + pl.getNome() + "_Down.gif");
-            this.imgGrande = new Image("resources/personagens/" + poke.getId() + " - " + poke.getNome() + "/" + poke.getNome() + "_Down.png");
-        } else { //senão, desenha preto.
-            this.imgGrande = new Image("resources/personagens/" + poke.getId() + " - " + poke.getNome() + "/" + poke.getNome() + "_Locked.png");
-        }
-
-        /// imgGrande.draw(gc.getWidth() / 2 - imgGrande.getWidth() / 2 - 30, imgGrande.getHeight() / 2 + 36, 2);
-        Image imgGrandeScaled = imgGrande.getScaledCopy(2);
-        imgGrandeScaled.drawCentered(gc.getWidth() / 2, 125);
-        // imgGrande.draw(gc.getWidth() / 2, gc.getHeight() / 2, imgGrande.getWidth()*5, imgGrande.getHeight()*5);
-
-
-
-
-
-        g.setColor(Color.lightGray);
-        g.fillRect(75, 40, 670, 10);//cima
-        g.fillRect(75, 200, 670, 95);//baixo
-        g.fillRect(75, 40, 200, 220);//esquerda
-        g.fillRect(525, 40, 220, 220);//direita
-
-
-        g.setColor(Color.decode("1996553984"));
-        g.drawRect(gc.getWidth() / 2 - 250 / 2, 50, 250, 150);
-        g.setColor(Color.white);
-
     }
 
     public void desenhaFundo(GameContainer gc, Graphics g) {
@@ -464,7 +350,7 @@ public class CharacterSelect extends BasicGameState {
 
 
         int linhas = 3;
-        int colunas = 9;
+        int colunas = 6;
 
         //desenha os quadrados que ficam por baixo dos pokemons
         for (int i = 1; i <= colunas; i++) {
@@ -539,13 +425,21 @@ public class CharacterSelect extends BasicGameState {
         }
     }
 
-
+    
     public String getPlayer1() {
         return this.player1;
     }
 
     public void setPlayer1(String player1) {
         this.player1 = player1;
+    }
+    
+    public int getIdPokemonPlayer1() {
+        return this.idPokemonPlayer1;
+    }
+
+    public void setIdPokemonPlayer1(int idPokemonPlayer1) {
+        this.idPokemonPlayer1 = idPokemonPlayer1;
     }
 
     public String getInimigo() {

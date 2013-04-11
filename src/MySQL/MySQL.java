@@ -16,7 +16,7 @@ public class MySQL
     Statement statement;    
     String user = "Admin";
     String pass = "Admin";
-    String host = "data/banco";	
+    String host = "Slick/data/banco";	
    
     public MySQL()
     {	   

@@ -12,21 +12,24 @@ import Ataques.Ataque;
 import Principal.Inimigo;
 import Principal.Player;
 import Principal.Pokemon;
+import Telas.CharacterSelect;
 
 import Ataques.Ember;
+import DAO.PokemonDAO;
 
 public class Fase1 extends BasicGameState{
 	
 	public static final int ID = 4;
 	StateBasedGame game;
+	CharacterSelect charSelect;
 	Player player;
 	ArrayList<Inimigo> listaInimigos;
 	ArrayList<Ataque> ataquesPlayer, ataquesInimigo;
 	Pokemon pokemon, pokemonInimigo;
 	Inimigo inimigo;
 
-	public Fase1(){
-		
+	public Fase1(CharacterSelect charSelect){
+		this.charSelect = charSelect;
 	}
 	
 	@Override
@@ -63,7 +66,7 @@ public class Fase1 extends BasicGameState{
 	}
 	
 	public void inicializa(){
-		pokemon = new Pokemon(1, "Bulbasaur", "Player");
+		pokemon = new Pokemon(this.charSelect.getIdPokemonPlayer1(), this.charSelect.getPlayer1(), "Player");
 		pokemonInimigo = new Pokemon(1,"Bulbasaur","Inimigo");
 		this.player = new Player(pokemon, 100, 100);
 		this.inimigo = new Inimigo(pokemonInimigo);
