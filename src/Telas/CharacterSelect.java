@@ -41,9 +41,7 @@ public class CharacterSelect extends BasicGameState {
 									// vertical(de 1 ate 3)
 	private int xDraw; // qual o x do quadrado de selecao
 	private int yDraw; // qual o y do quadrado de selecao
-	public ArrayList<PokemonLiberado> listaDePokemonLiberado; // lista de
-																// pokemons
-																// liberados
+	public ArrayList<PokemonLiberado> listaDePokemonLiberado; // lista de pokemons liberados
 	public ArrayList<Pokemon> listaDePokemon; // lista de pokemon(todos)
 	public ArrayList<String> nomes; // lista de nomes dos pokemons
 	public ArrayList<String> nomesLiberados; // lista de nomes dos pokemons

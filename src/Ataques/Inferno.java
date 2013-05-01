@@ -1,6 +1,8 @@
 package Ataques;
 
 import DAO.AtaqueDAO;
+import Principal.Pokemon;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.newdawn.slick.Animation;
@@ -13,8 +15,8 @@ import tcc.Personagem;
 
 public class Inferno extends Ataque {
 
-    public Inferno(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public Inferno(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {

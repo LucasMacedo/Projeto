@@ -1,6 +1,8 @@
 package Ataques;
 
 import DAO.AtaqueDAO;
+import Principal.Pokemon;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,10 +17,10 @@ public class SolarBeam extends Ataque {
 
     int contador;
 
-    public SolarBeam(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
-        this.personagensAcertados = new ArrayList<Personagem>();
+    public SolarBeam(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+        this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
-        this.personagem = personagem;
+        this.pokemon = pokemon;
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
             name = name.substring(name.lastIndexOf('.') + 1, name.indexOf('@'));
@@ -52,9 +54,7 @@ public class SolarBeam extends Ataque {
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) {
         if (this.contador <= 5) {
-            g.rotate(this.x, this.y, -this.angulo);
             this.imagem.draw(this.x, this.y);
-            g.rotate(this.x, this.y, this.angulo);
         }
     }
 }

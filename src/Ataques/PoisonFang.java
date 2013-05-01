@@ -1,6 +1,8 @@
 package Ataques;
 
 import DAO.AtaqueDAO;
+import Principal.Pokemon;
+
 import javax.swing.JOptionPane;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,7 +13,7 @@ import tcc.Personagem;
 
 public class PoisonFang extends Ataque {
 
-    public PoisonFang(int x, int y, int destX, int destY, float angulo, Personagem personagem) {
+    public PoisonFang(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {

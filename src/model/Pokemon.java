@@ -195,6 +195,7 @@ public class Pokemon {
     public void setElementoAtaqueId(int elementoAtaqueId) {
         this.elementoAtaqueId = elementoAtaqueId;
     }
+
     
     
 }

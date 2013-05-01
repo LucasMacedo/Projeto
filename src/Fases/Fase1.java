@@ -15,6 +15,7 @@ import Principal.Pokemon;
 import Telas.CharacterSelect;
 
 import Ataques.Ember;
+import DAO.PokemonDAO;
 
 
 public class Fase1 extends BasicGameState{
@@ -23,7 +24,7 @@ public class Fase1 extends BasicGameState{
 	StateBasedGame game;
 	CharacterSelect charSelect;
 	Player player;
-	ArrayList<Inimigo> listaInimigos;
+	ArrayList<model.Pokemon> listaInimigos;
 	ArrayList<Ataque> ataquesPlayer, ataquesInimigo;
 	Pokemon pokemon, pokemonInimigo;
 	Inimigo inimigo;
@@ -42,7 +43,7 @@ public class Fase1 extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame game)throws SlickException {
 		this.game = game;
-
+		this.listaInimigos = PokemonDAO.getLista();
 	}
 
 	@Override
@@ -74,9 +75,21 @@ public class Fase1 extends BasicGameState{
 
 		System.out.println("ERRO - " + this.charSelect.getPlayer1());
 		pokemon = new Pokemon(this.charSelect.getIdPokemonPlayer1(), this.charSelect.getPlayer1(), "Player");
-		pokemonInimigo = new Pokemon(1,"Bulbasaur","Inimigo");
-		this.player = new Player(pokemon, 100, 100);
+		
+		
+		for(int x = 1 ; x < 10 ;x++){	
+			
+		int i = (int) ( 1 + (Math.random()* 40));	
+			String nomeIni = this.listaInimigos.get(i).getNome();
+			int iniID = this.listaInimigos.get(i).getId();
+		pokemonInimigo = new Pokemon(iniID,nomeIni,"Inimigo");
+		System.out.print(pokemonInimigo.getNome());
 		this.inimigo = new Inimigo(pokemonInimigo);
+		}
+		
+		
+		this.player = new Player(pokemon, 100, 100);
+		
 		
 		this.ataquesPlayer = new ArrayList<Ataque>();
 		this.ataquesInimigo = new ArrayList<Ataque>();
