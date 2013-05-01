@@ -45,6 +45,7 @@ public class Fase1 extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame game)throws SlickException {
 		this.game = game;
 		this.listaInimigos = PokemonDAO.getLista();
+		this.InimigoLista = new ArrayList<Inimigo>();
 	}
 
 	@Override
@@ -86,16 +87,7 @@ public class Fase1 extends BasicGameState{
 		pokemon = new Pokemon(this.charSelect.getIdPokemonPlayer1(), this.charSelect.getPlayer1(), "Player");
 		
 		
-		for(int x = 1 ; x < 10 ;x++){	
-			
-		int i = (int) ( 1 + (Math.random()* 40));	
-			String nomeIni = this.listaInimigos.get(i).getNome();
-			int iniID = this.listaInimigos.get(i).getId();
-		pokemonInimigo = new Pokemon(iniID,nomeIni,"Inimigo");
-		this.inimigo = new Inimigo(pokemonInimigo);
-		InimigoLista.add(this.inimigo);
-		}
-		
+		this.CriaInimigo();
 		
 		this.player = new Player(pokemon, 100, 100);
 		
@@ -105,11 +97,28 @@ public class Fase1 extends BasicGameState{
 		this.inicializou = true;
 	}
 	
+	
 	public void lancaAtaques(){
 		if(this.player.atacou == true){
 			this.ataquesPlayer.add(new Ember(this.player.pokemon.getX(), this.player.pokemon.getY(), this.player.pokemon));
 			this.player.atacou = false;
 		}
+	}
+	
+	public void CriaInimigo(){
+		
+		int yx = (int) (1+ (Math.random()* 20));
+		
+		for(int x = 0 ; x < yx ;x++){	
+			
+		int i = (int) ( 1 + (Math.random()* 38));	
+			String nomeIni = this.listaInimigos.get(i).getNome();
+			int iniID = this.listaInimigos.get(i).getId();
+		pokemonInimigo = new Pokemon(iniID,nomeIni,"Inimigo");
+		this.inimigo = new Inimigo(pokemonInimigo);
+		InimigoLista.add(this.inimigo);
+		}
+		
 	}
 	
 }

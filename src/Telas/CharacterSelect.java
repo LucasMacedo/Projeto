@@ -58,6 +58,7 @@ public class CharacterSelect extends BasicGameState {
 	ArrayList<Pokemon> pokemonsPrimeiraLinha;
 	ArrayList<Pokemon> pokemonsSegundaLinha;
 	ArrayList<Pokemon> pokemonsTerceiraLinha;
+	ArrayList<Pokemon> pokemonsQuartaLinha;
 	int totalLinhas = 10;
 
 	public CharacterSelect(String p1) {
@@ -92,6 +93,7 @@ public class CharacterSelect extends BasicGameState {
 		this.pokemonsPrimeiraLinha = new ArrayList<Pokemon>();
 		this.pokemonsSegundaLinha = new ArrayList<Pokemon>();
 		this.pokemonsTerceiraLinha = new ArrayList<Pokemon>();
+		this.pokemonsQuartaLinha = new ArrayList<Pokemon>();
 
 		for (int i = 0; i < 6; i++) {
 			this.pokemonsPrimeiraLinha.add(this.listaDePokemon.get(i));
@@ -102,6 +104,10 @@ public class CharacterSelect extends BasicGameState {
 		for (int i = 0; i < 6; i++) {
 			this.pokemonsTerceiraLinha.add(this.listaDePokemon.get(i + 12));
 		}
+		for (int i = 0; i < 6; i++) {
+			this.pokemonsQuartaLinha.add(this.listaDePokemon.get(i + 18));
+		}
+		
 
 		this.numLinhas = ((this.listaDePokemon.size() + 1) / 6) + 1;
 
@@ -185,6 +191,8 @@ public class CharacterSelect extends BasicGameState {
 						this.pokemonsPrimeiraLinha.clear();
 						this.pokemonsSegundaLinha.clear();
 						this.pokemonsTerceiraLinha.clear();
+						this.pokemonsQuartaLinha.clear();
+						
 						for (int i = 0; i < 6; i++) {
 							this.pokemonsPrimeiraLinha
 									.add(this.listaDePokemon
@@ -198,6 +206,12 @@ public class CharacterSelect extends BasicGameState {
 						}
 						for (int i = 0; i < 6; i++) {
 							this.pokemonsTerceiraLinha
+									.add(this.listaDePokemon
+											.get(((i + ((this.ySelecionado
+													- linha + 1) * 6)))));
+						}
+						for (int i = 0; i < 6; i++) {
+							this.pokemonsQuartaLinha
 									.add(this.listaDePokemon
 											.get(((i + ((this.ySelecionado
 													- linha + 2) * 6)))));
@@ -229,7 +243,7 @@ public class CharacterSelect extends BasicGameState {
 				this.ySelecionado++;
 				this.pokemonSelecionado += 6;
 				System.out.println(ySelecionado + " - linha: " + this.linha);
-				if (this.linha == 3) {
+				if (this.linha == 4) {
 					if (this.ySelecionado > this.totalLinhas) {
 						// this.ySelecionado = 1;
 						// this.linha = 1;
@@ -254,6 +268,7 @@ public class CharacterSelect extends BasicGameState {
 						this.pokemonsPrimeiraLinha.clear();
 						this.pokemonsSegundaLinha.clear();
 						this.pokemonsTerceiraLinha.clear();
+						this.pokemonsQuartaLinha.clear();
 						
 						for (int i = 0; i < 6; i++) {
 							this.pokemonsPrimeiraLinha
@@ -270,11 +285,17 @@ public class CharacterSelect extends BasicGameState {
 							this.pokemonsTerceiraLinha
 									.add(this.listaDePokemon
 											.get(((i + ((this.ySelecionado
+													- linha + 1) * 6)))));
+						}
+						for (int i = 0; i < 6; i++) {
+							this.pokemonsQuartaLinha
+									.add(this.listaDePokemon
+											.get(((i + ((this.ySelecionado
 													- linha + 2) * 6)))));
 						}
 					}
 				}
-				if (this.linha < 3) {
+				if (this.linha < 4) {
 					this.linha++;
 				}
 				System.out.println(this.pokemonSelecionado
@@ -355,6 +376,9 @@ public class CharacterSelect extends BasicGameState {
 					+ status + ".png");
 			this.pokemonImage.drawCentered(110 + (75 * i), 370);
 		}
+		
+		
+		
 		for (int i = 0; i < this.pokemonsSegundaLinha.size(); i++) {
 			String status = "Locked";
 			if (this.nomesLiberados.contains(this.pokemonsSegundaLinha.get(i)
@@ -368,6 +392,9 @@ public class CharacterSelect extends BasicGameState {
 					+ ".png");
 			this.pokemonImage.drawCentered(110 + (75 * i), 445);
 		}
+		
+		
+		
 		for (int i = 0; i < this.pokemonsTerceiraLinha.size(); i++) {
 			String status = "Locked";
 			if (this.nomesLiberados.contains(this.pokemonsTerceiraLinha.get(i)
@@ -381,7 +408,25 @@ public class CharacterSelect extends BasicGameState {
 					+ status + ".png");
 			this.pokemonImage.drawCentered(110 + (75 * i), 520);
 		}
-
+		
+		
+		
+		for (int i = 0; i < this.pokemonsQuartaLinha.size(); i++) {
+			String status = "Locked";
+			if (this.nomesLiberados.contains(this.pokemonsQuartaLinha.get(i)
+					.getNome())) {
+				status = "Down";
+			}
+			this.pokemonImage = new Image("resources/personagens/"
+					+ this.pokemonsQuartaLinha.get(i).getId() + " - "
+					+ this.pokemonsQuartaLinha.get(i).getNome() + "/"
+					+ this.pokemonsQuartaLinha.get(i).getNome() + "_"
+					+ status + ".png");
+			this.pokemonImage.drawCentered(110 + (75 * i), 595);
+		}
+		
+		
+		
 		Pokemon poke = this.listaDePokemon.get(this.pokemonSelecionado);
 		if (this.nomesLiberados.contains(this.nomes
 				.get(this.pokemonSelecionado))) { // se a busca do dao retornar
@@ -423,7 +468,7 @@ public class CharacterSelect extends BasicGameState {
 		g.drawRect(40, 39, 520, 256);
 		
 
-		int linhas = 3;
+		int linhas = 4;
 		int colunas = 6;
 
 		// desenha os quadrados que ficam por baixo dos pokemons
