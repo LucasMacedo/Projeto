@@ -25,6 +25,7 @@ public class Fase1 extends BasicGameState{
 	CharacterSelect charSelect;
 	Player player;
 	ArrayList<model.Pokemon> listaInimigos;
+	ArrayList<Inimigo> InimigoLista;
 	ArrayList<Ataque> ataquesPlayer, ataquesInimigo;
 	Pokemon pokemon, pokemonInimigo;
 	Inimigo inimigo;
@@ -49,7 +50,10 @@ public class Fase1 extends BasicGameState{
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int i)throws SlickException {		
 		this.player.update(gc, game, i);
-		this.inimigo.update(gc, game, i);
+		
+		for(Inimigo x : this.InimigoLista){
+			x.update(gc, game, i);
+		}
 		
 		this.lancaAtaques();
 	}
@@ -59,8 +63,13 @@ public class Fase1 extends BasicGameState{
 		if(!inicializou){
 			this.inicializa();
 		}
+		
 		this.player.render(gc, game, g);
-		this.inimigo.render(gc, game, g);
+		
+		
+		for(Inimigo i : this.InimigoLista){
+			i.render(gc, game, g);
+		}
 		
 		g.drawRoundRect(gc.getWidth()/2 + 110, gc.getHeight()/2 + 180, 180, 150, 10);
 		g.drawString(pokemon.getNome(), gc.getWidth()/2 + 120, gc.getHeight()/2 + 190);
@@ -83,8 +92,8 @@ public class Fase1 extends BasicGameState{
 			String nomeIni = this.listaInimigos.get(i).getNome();
 			int iniID = this.listaInimigos.get(i).getId();
 		pokemonInimigo = new Pokemon(iniID,nomeIni,"Inimigo");
-		System.out.print(pokemonInimigo.getNome());
 		this.inimigo = new Inimigo(pokemonInimigo);
+		InimigoLista.add(this.inimigo);
 		}
 		
 		
