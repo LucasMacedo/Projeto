@@ -9,6 +9,7 @@ public class Player {
 
 	public Pokemon pokemon;
 	public boolean atacou;
+	public int cooldownAtaque = 50;
 
 	public Player(Pokemon pokemon, int x, int y) {
 		this.pokemon = pokemon;
@@ -20,6 +21,10 @@ public class Player {
 		this.input(gc.getInput());
 		this.pokemon.update(gc, game, delta);
 		this.verificaLimites();
+
+		if(cooldownAtaque > 0){
+			this.cooldownAtaque --;
+		}
 	}
 
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) {
@@ -65,7 +70,9 @@ public class Player {
 	}
 
 	public void ataca() {
-		this.atacou = true;
+		if(this.cooldownAtaque<= 0){
+			this.atacou = true;
+		}
 	}
 
 }

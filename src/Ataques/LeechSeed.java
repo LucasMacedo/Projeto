@@ -13,7 +13,8 @@ import Principal.Pokemon;
 
 public class LeechSeed extends Ataque {
 
-    public LeechSeed(int x, int y, int destX, int destY, float angulo, Pokemon personagem) {
+    public LeechSeed(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -40,10 +41,8 @@ public class LeechSeed extends Ataque {
         }
         
         if(this.pokemon.tipo.equals("Player")){
-        	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-        	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -54,7 +53,6 @@ public class LeechSeed extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (this.getAcertou() == true) {
             this.contadorDano++;

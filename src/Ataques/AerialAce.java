@@ -15,7 +15,8 @@ public class AerialAce extends Ataque {
     int frameElapsed;
     int frame;
 
-    public AerialAce(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public AerialAce(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
@@ -24,12 +25,10 @@ public class AerialAce extends Ataque {
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
 
-        this.pokemon = pokemon;
         this.desativado = false;
         this.x = x;
         this.y = y;
         this.frame = 0;
-        this.desativado = false;
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 42, 46);
@@ -42,10 +41,8 @@ public class AerialAce extends Ataque {
         }
 
         if(this.pokemon.tipo.equals("Player")){
-        	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-        	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -56,7 +53,6 @@ public class AerialAce extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (acertou == true) {
             this.contadorDano++;
