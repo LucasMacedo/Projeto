@@ -18,6 +18,7 @@ public class Pokemon extends GameObject {
 	protected int speed;
 	protected int hp;
 	protected int lvl;
+	protected int VidaInicial;
 
 	public String tipo;
 	protected Animacao animacaoCima;
@@ -130,6 +131,14 @@ public class Pokemon extends GameObject {
 		this.hp = hp;
 	}
 
+	public int getVidaInicial(){
+		return VidaInicial;
+	}
+	
+	public void setVidaInicial(int VidaInicial){
+		this.VidaInicial = VidaInicial;
+	}
+	
 	public int getLvl() {
 		return lvl;
 	}
@@ -146,7 +155,7 @@ public class Pokemon extends GameObject {
 			def = poke.getDef();
 			hp = poke.getHp();
 			lvl = poke.getLvl();
-			
+			VidaInicial = hp;
 	}
 
 

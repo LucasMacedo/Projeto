@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="19" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grass01vs7" tilewidth="32" tileheight="32">
+  <image source="../Tiles/grass01vs7.png" width="606" height="479"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="19" height="25">
+  <data encoding="base64" compression="zlib">
+   eJyFlT0vBFEUhu8qSLQU/gCFLTSEQqMh9JsQ/gBCReerWpXPaqci2OkUJMw0oqRVCa2SdnvvTc6bfZ29G8WTmczcefack/verYQQekAT5GALbNt9acRnY2AcTIBRsGprIhVzDIBBc0Xq4FDcpT2LrlkwJy7+Fh3DYERcDamN14a5FsGSc+XimARToJBaWBuvpbnWwHqiLjrmwYLUlds1s3oyW19LzKuwd3QsgxX7nj1xTS73tcS8+I6ODbDp5s41dNPl58V1dOyDA5l7Jmv+mxfX0XEGzl2PpXPT1a0uOq7BjeuxTLi1rmlQBX0GHQ/gMVGH7o1eMAN2wC7Ys/mxLjpewGto7wm+L8UdezoCx+AEnJqLv0kHs1SEzj3BXqPrAlyCd3Blz7jmA3yGv3nUPcEc0HUH7hOuWNc3+AntLBWhM4u8j7Put5ml6mJvmkfdU3W559nSci4+Z2/MEl2cd8PVWSZcrIu9pfLYDOnzzLt4FrA3Zqlws68m/DXn8udEKo9PgvrVNRQ6zwlmifvAn4M6s5ZzcfbsjVnSvcpzOQt/s3TrXJw9e2OWtCb2pP8B0fssLs0je9M88psstLOpvHVxsTdmyX+X4qvL7NnbLwu3+rc=
+  </data>
+ </layer>
+</map>

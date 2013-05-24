@@ -9,12 +9,15 @@ import javax.swing.JOptionPane;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 import Ataques.Ataque;
 import Principal.Inimigo;
+import Principal.Mapa;
 import Principal.Player;
 import Principal.Pokemon;
 import Telas.CharacterSelect;
@@ -37,9 +40,10 @@ public class Fase1 extends BasicGameState{
 	Pokemon pokemon, pokemonInimigo;
 	Inimigo inimigo;
 	boolean inicializou = false;
-
 	int cooldown = 0;
-	int VidaInicial;
+	Mapa map;
+	int MapY;
+
 	
 	
 
@@ -58,7 +62,7 @@ public class Fase1 extends BasicGameState{
 		this.game = game;
 		this.listaInimigos = PokemonDAO.getLista();
 		this.InimigoLista = new ArrayList<Inimigo>();
-		
+		this.map = new Mapa("fase1");
 	}
 
 	@Override
@@ -81,8 +85,9 @@ public class Fase1 extends BasicGameState{
 			}else{
 			this.cooldown--;
 			}
-		
-
+			
+		this.map.MoveMapa(MapY);
+		this.MapY++; 
 	}
 
 	@Override
@@ -90,7 +95,7 @@ public class Fase1 extends BasicGameState{
 		if(!inicializou){
 			this.inicializa();
 		}
-		
+		this.map.render(gc, game, g);
 		this.player.render(gc, game, g);
 		
 		
@@ -103,7 +108,7 @@ public class Fase1 extends BasicGameState{
 		g.drawString(" "+ pokemon.getLvl(), gc.getWidth()/2 + 250 , gc.getHeight()/2 + 190);
 		g.drawRoundRect(gc.getWidth()/2 + 120, gc.getHeight()/2 + 220, 150, 20, 0);
 		g.setColor(Color.green);
-		g.fillRect(gc.getWidth()/2 + 120, gc.getHeight()/2 + 220, (pokemon.getHp()*150)/this.VidaInicial, 20);
+		g.fillRect(gc.getWidth()/2 + 120, gc.getHeight()/2 + 220, (pokemon.getHp()*150)/pokemon.getVidaInicial(), 20);
 		g.setColor(Color.white);
 		
 		
@@ -119,9 +124,6 @@ public class Fase1 extends BasicGameState{
 
 		this.InimigoLista = new ArrayList<Inimigo>();
 		
-		
-		
-
 		this.player = new Player(pokemon, 100, 100);
 				
 		this.ataquesPlayer = new ArrayList<Ataque>();
@@ -131,7 +133,7 @@ public class Fase1 extends BasicGameState{
 		this.listaAtaques = AtaqueDAO.getListaAtaque();
 		
 		this.inicializou = true;
-
+	
 	}	
 
 	
@@ -245,7 +247,6 @@ if(this.player.atacou == true && this.player.cooldownAtaque <= 0){
 		  
 		  int yx = (int) (1+ (Math.random()* 20));
 		  
-			   
 		  int i = (int) ( 1 + (Math.random()* 38)); 
 		   String nomeIni = this.listaInimigos.get(i).getNome();
 		   int iniID = this.listaInimigos.get(i).getId();
