@@ -11,7 +11,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+
 
 public class Inferno extends Ataque {
 
@@ -30,9 +30,7 @@ public class Inferno extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
-        this.angulo = 0;
+        
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 33, 65);
@@ -44,8 +42,7 @@ public class Inferno extends Ataque {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
 
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
+        
         this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
         this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
     }

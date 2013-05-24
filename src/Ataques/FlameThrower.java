@@ -14,7 +14,7 @@ import Principal.Pokemon;
 
 public class FlameThrower extends Ataque {
 
-    public FlameThrower(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public FlameThrower(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();

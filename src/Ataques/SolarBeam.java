@@ -11,7 +11,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+
 
 public class SolarBeam extends Ataque {
 
@@ -28,8 +28,7 @@ public class SolarBeam extends Ataque {
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
 
-        this.angulo = angulo;
-        
+       
         this.desativado = false;
         this.x = x;
         this.y = y;

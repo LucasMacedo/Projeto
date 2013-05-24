@@ -30,9 +30,7 @@ public class Thunder extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
-        this.angulo = 0;
+        
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 165, 315);

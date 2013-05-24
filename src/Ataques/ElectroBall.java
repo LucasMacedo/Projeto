@@ -15,7 +15,8 @@ import Principal.Pokemon;
 
 public class ElectroBall extends Ataque {
 
-    public ElectroBall(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public ElectroBall(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -42,10 +43,8 @@ public class ElectroBall extends Ataque {
         }
 
         if(this.pokemon.tipo.equals("Player")){
-        	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-        	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -56,7 +55,6 @@ public class ElectroBall extends Ataque {
             this.contadorDano ++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if(this.getAcertou() == true){
             this.contadorDano ++;

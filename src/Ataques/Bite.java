@@ -44,10 +44,8 @@ public class Bite extends Ataque {
         }
         
         if(this.pokemon.tipo.equals("Player")){
-        	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-        	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -58,7 +56,6 @@ public class Bite extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (acertou == true) {
             this.contadorDano++;

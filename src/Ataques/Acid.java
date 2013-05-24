@@ -16,7 +16,8 @@ public class Acid extends Ataque {
     int frameElapsed;
     int frame;
 
-    public Acid(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public Acid(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
 
         this.setContador(0);
@@ -29,9 +30,7 @@ public class Acid extends Ataque {
 
         this.pokemon = pokemon;
         this.desativado = false;
-        // this.x = x - (this.personagem.spriteAtual.pegaLargura() + 70);
         this.x = x;
-        //this.y = y - (this.personagem.spriteAtual.pegaAltura() + 85);
         this.y = y;
         this.frame = 0;
 
@@ -48,10 +47,8 @@ public class Acid extends Ataque {
         }
 
         if(this.pokemon.tipo.equals("Player")){
-        	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-        	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -63,7 +60,6 @@ public class Acid extends Ataque {
             return;
         }
 
-        this.x += this.dx;
         this.y += this.dy;
         if (acertou == true) {
             this.contadorDano++;
@@ -75,26 +71,7 @@ public class Acid extends Ataque {
         if (!animation.isStopped()) {
             this.animation.draw(this.x, this.y);
         }
-        // g.fillRect(this.getX(), this.getY(), this.animation.getWidth(), this.animation.getHeight());
     }
-
-   // @Override
-   // public Rectangle getRetangulo() {
-  //      return new Rectangle(this.x, this.y, this.animation.getWidth(), this.animation.getHeight());
-  //  }
-
-   // public boolean temColisao(Rectangle retangulo) {
-        //if (this.desativado || this.frame == 4) {
-            //return false;
-        //}
-//
-        //if (this.getRetangulo().intersects(retangulo)) {
-            //this.desativado = true;
-            //return true;
-        //} else {
-        //    /return false;
-        //}
-    //}
 
     public int getFrames() {
         return this.frameElapsed;

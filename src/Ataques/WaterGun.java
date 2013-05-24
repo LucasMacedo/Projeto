@@ -15,7 +15,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class WaterGun extends Ataque {
 
-    public WaterGun(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public WaterGun(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -30,9 +31,6 @@ public class WaterGun extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
-        this.angulo = 0;
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 22, 20);
@@ -44,10 +42,11 @@ public class WaterGun extends Ataque {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
 
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override
@@ -56,7 +55,6 @@ public class WaterGun extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (this.getAcertou() == true) {
             this.contadorDano++;

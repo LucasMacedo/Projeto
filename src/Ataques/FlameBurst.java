@@ -14,7 +14,7 @@ import Principal.Pokemon;
 
 public class FlameBurst extends Ataque {
 
-    public FlameBurst(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public FlameBurst(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         this.pokemon = pokemon;

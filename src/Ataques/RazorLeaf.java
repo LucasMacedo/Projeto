@@ -11,7 +11,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
+
 
 public class RazorLeaf extends Ataque {
 
@@ -30,9 +30,7 @@ public class RazorLeaf extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
-        this.angulo = angulo;
+        
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 220, 85);
