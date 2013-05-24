@@ -1,18 +1,17 @@
 package Ataques;
 
 import DAO.AtaqueDAO;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.StateBasedGame;
 import Principal.Pokemon;
 
-public class DrillPeck extends Ataque {
+import java.util.ArrayList;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.state.StateBasedGame;
 
-    public DrillPeck(int x, int y, Pokemon pokemon){
+public class BodySlam extends Ataque {
+
+    public BodySlam(int x, int y, Pokemon pokemon) {
     	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
@@ -29,29 +28,26 @@ public class DrillPeck extends Ataque {
         this.x = x;
         this.y = y;
 
-        try {
-            this.imagem = new Image("resources/ataques/" + name + "/" + name + ".png");
-        } catch (SlickException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
-        }
 
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
+        	this.imagem = pokemon.animacaoBaixo.getImage();
         } else {
         	this.dy = this.velocidade;
+        	this.imagem = pokemon.animacaoCima.getImage();
         }
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) {
-        if (this.desativado == true) {
+        if (this.desativado && acertou == true) {
             this.contadorDano++;
             return;
         }
-        this.y += this.dy;
-        if (this.getAcertou() == true) {
-            this.contadorDano++;
+        if(this.acertou){
+            this.desativado = true;
         }
+        this.y += this.dy;
     }
 
     @Override
@@ -59,11 +55,7 @@ public class DrillPeck extends Ataque {
         if (this.desativado == true) {
             return;
         }
-        if(this.pokemon.tipo.equals("Player")){
-            this.imagem.draw(this.x, this.y);
-        } else {
-        	this.imagem.setRotation(180);
-            this.imagem.draw(this.x, this.y);
-        }
+        Color cor = new Color(255, 255, 255, 200);
+        this.imagem.drawFlash(this.x, this.y, this.imagem.getWidth(), this.imagem.getHeight(), cor);
     }
 }

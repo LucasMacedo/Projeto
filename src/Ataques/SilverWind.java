@@ -1,6 +1,8 @@
 package Ataques;
 
 import DAO.AtaqueDAO;
+import Principal.Pokemon;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.newdawn.slick.GameContainer;
@@ -8,11 +10,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import Principal.Pokemon;
 
-public class DrillPeck extends Ataque {
+public class SilverWind extends Ataque {
 
-    public DrillPeck(int x, int y, Pokemon pokemon){
+    public SilverWind(int x, int y, Pokemon pokemon) {
     	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
@@ -44,14 +45,14 @@ public class DrillPeck extends Ataque {
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) {
-        if (this.desativado == true) {
+        if (this.desativado && acertou == true) {
             this.contadorDano++;
             return;
         }
-        this.y += this.dy;
-        if (this.getAcertou() == true) {
-            this.contadorDano++;
+        if(this.acertou){
+            this.desativado = true;
         }
+        this.y += this.dy;
     }
 
     @Override
@@ -59,11 +60,6 @@ public class DrillPeck extends Ataque {
         if (this.desativado == true) {
             return;
         }
-        if(this.pokemon.tipo.equals("Player")){
-            this.imagem.draw(this.x, this.y);
-        } else {
-        	this.imagem.setRotation(180);
-            this.imagem.draw(this.x, this.y);
-        }
+        this.imagem.draw(this.x, this.y);
     }
 }

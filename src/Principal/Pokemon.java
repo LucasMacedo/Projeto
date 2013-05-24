@@ -20,8 +20,8 @@ public class Pokemon extends GameObject {
 	protected int lvl;
 
 	public String tipo;
-	protected Animacao animacaoCima;
-	protected Animacao animacaoBaixo;
+	public Animacao animacaoCima;
+	public Animacao animacaoBaixo;
 	public Animacao animacaoAtual;
 
 	public Pokemon() {
