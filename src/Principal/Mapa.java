@@ -9,14 +9,16 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Mapa extends GameObject {
 		
 	TiledMap mapa;
-		
-	public Mapa(String mapa){
+	
+	
+	public Mapa(String mapa, int y){
 		try {
 			this.mapa = new TiledMap("resources/Fases/"+mapa+".tmx");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.y = y;
 	}
 
 	@Override
