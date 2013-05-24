@@ -17,7 +17,7 @@ public class Hurricane extends Ataque {
     int frameElapsed;
     int frame;
 
-    public Hurricane(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public Hurricane(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         
         this.setContador(0);
@@ -46,10 +46,8 @@ public class Hurricane extends Ataque {
         }
 
         if(this.pokemon.tipo.equals("Player")){
-        	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-        	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -60,7 +58,6 @@ public class Hurricane extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (acertou == true) {
             this.contadorDano++;
@@ -71,24 +68,6 @@ public class Hurricane extends Ataque {
     public void render(GameContainer gc, StateBasedGame game, Graphics g) {
             this.animation.draw(this.x, this.y);
     }
-
-    
-    /* public Rectangle getRetangulo() {
-        return new Rectangle(this.x, this.y, this.animation.getWidth(), this.animation.getHeight());
-    }
-
-    public boolean temColisao(Rectangle retangulo) {
-        if (this.desativado || this.frame == 4) {
-            return false;
-        }
-
-        if (this.getRetangulo().intersects(retangulo)) {
-            this.desativado = true;
-            return true;
-        } else {
-            return false;
-        }
-   }*/ 
 
     public int getFrames() {
         return this.frameElapsed;

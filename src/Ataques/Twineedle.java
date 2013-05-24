@@ -10,11 +10,11 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import tcc.Personagem;
 
 public class Twineedle extends Ataque {
 
-    public Twineedle(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public Twineedle(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -29,9 +29,6 @@ public class Twineedle extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        this.destX = destX;
-        this.destY = destY;
-        this.angulo = angulo;
 
         try {
             this.imagem = new Image("resources/ataques/" + name + "/" + name + ".png");
@@ -39,12 +36,11 @@ public class Twineedle extends Ataque {
             JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
         }
 
-        deltaX = Math.abs(this.x - this.destX);
-        deltaY = Math.abs(this.y - this.destY);
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
-        
-        this.imagem.rotate(-angulo);
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override
@@ -53,7 +49,6 @@ public class Twineedle extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (this.getAcertou() == true) {
             this.contadorDano++;

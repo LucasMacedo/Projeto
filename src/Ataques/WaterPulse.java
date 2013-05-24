@@ -16,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class WaterPulse extends Ataque {
 
-    public WaterPulse(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public WaterPulse(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         this.pokemon = pokemon;
@@ -43,8 +43,8 @@ public class WaterPulse extends Ataque {
 
         this.x -= this.animation.getCurrentFrame().getWidth() / 2;
         this.y -= this.animation.getCurrentFrame().getHeight() / 2;
-        this.x += this.personagem.animacaoAtual.getImage().getWidth() / 2;
-        this.y += this.personagem.animacaoAtual.getImage().getHeight() / 2;
+        this.x += this.pokemon.animacaoAtual.getImage().getWidth() / 2;
+        this.y += this.pokemon.animacaoAtual.getImage().getHeight() / 2;
     }
 
     @Override
