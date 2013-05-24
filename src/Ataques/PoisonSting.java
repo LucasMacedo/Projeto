@@ -34,7 +34,7 @@ public class PoisonSting extends Ataque {
         } catch (SlickException ex) {
             JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
         }
-
+        
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
         } else {

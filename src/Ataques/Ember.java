@@ -13,6 +13,8 @@ import Principal.Pokemon;
 
 public class Ember extends Ataque {
 
+	 
+	 
     public Ember(int x, int y, Pokemon pokemon) {
     	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();

@@ -29,7 +29,6 @@ public class RazorLeaf extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 220, 85);
         } catch (SlickException ex) {

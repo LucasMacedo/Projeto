@@ -30,7 +30,6 @@ public class Twister extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 95, 95);
         } catch (SlickException ex) {

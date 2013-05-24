@@ -27,13 +27,11 @@ public class PoisonFang extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-
         try {
             this.imagem = new Image("resources/ataques/" + name + "/" + name + ".png");
         } catch (SlickException ex) {
             JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
         }
-
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
         } else {

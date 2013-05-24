@@ -1,12 +1,16 @@
 package Principal;
 
+import model.PokemonLiberado;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Pokemon extends GameObject{
-	
+import DAO.PokemonLiberadoDAO;
+
+public class Pokemon extends GameObject {
+
 	protected int id;
 	protected String nome;
 	protected int atk;
@@ -14,59 +18,67 @@ public class Pokemon extends GameObject{
 	protected int speed;
 	protected int hp;
 	protected int lvl;
-	
+
 	public String tipo;
 	protected Animacao animacaoCima;
 	protected Animacao animacaoBaixo;
 	public Animacao animacaoAtual;
 
-	public Pokemon(){
+	public Pokemon() {
 	}
-	
-	public Pokemon(int id, String nome, String tipo){//tipo seria player ou inimigo
+
+	public Pokemon(int id, String nome, String tipo) {// tipo seria player ou
+														// inimigo
+		
 		
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
-		
-		////// mudar
-		this.speed = 5;
-		///// mudar
 
-		try{
-			if(tipo.equals("Player")){
+		this.SetaPokemon(id);
+		
+		// //// mudar
+		this.speed = 5;
+		// /// mudar
+
+		try {
+			if (tipo.equals("Player")) {
 				this.animacaoCima = new Animacao(300);
-				this.animacaoCima.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Up.png"));
-				this.animacaoCima.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Up2.png"));
+				this.animacaoCima.add(new Image("resources/personagens/" + id
+						+ " - " + nome + "/" + nome + "_Up.png"));
+				this.animacaoCima.add(new Image("resources/personagens/" + id
+						+ " - " + nome + "/" + nome + "_Up2.png"));
 				this.animacaoAtual = this.animacaoCima;
-			}else{
+			} else {
 				this.animacaoBaixo = new Animacao(300);
-				this.animacaoBaixo.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Down.png"));
-				this.animacaoBaixo.add(new Image("resources/personagens/"+id+" - "+nome+"/"+nome+"_Down2.png"));
+				this.animacaoBaixo.add(new Image("resources/personagens/" + id
+						+ " - " + nome + "/" + nome + "_Down.png"));
+				this.animacaoBaixo.add(new Image("resources/personagens/" + id
+						+ " - " + nome + "/" + nome + "_Down2.png"));
 				this.animacaoAtual = this.animacaoBaixo;
 			}
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			System.out.println(ex);
 		}
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta) {
-		if(this.tipo.equals("Player")){
+		if (this.tipo.equals("Player")) {
 			this.animacaoCima.update();
-		}else{
+		} else {
 			this.animacaoBaixo.update();
 		}
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) {
-		if(this.tipo.equals("Player")){
+		if (this.tipo.equals("Player")) {
 			this.animacaoCima.render(this.x, this.y, 1, true);
-		}else{
+		} else {
 			this.animacaoBaixo.render(this.x, this.y, 1, true);
 		}
-		
+
 	}
 
 	public int getId() {
@@ -114,6 +126,7 @@ public class Pokemon extends GameObject{
 	}
 
 	public void setHp(int hp) {
+		hp += (((hp + 1 / 8 + 50) * lvl) / 50 + 10);
 		this.hp = hp;
 	}
 
@@ -124,4 +137,18 @@ public class Pokemon extends GameObject{
 	public void setLvl(int lvl) {
 		this.lvl = lvl;
 	}
+
+
+	public void SetaPokemon(int id){
+		PokemonLiberado poke = PokemonLiberadoDAO.getPokemon(id);
+		
+			atk = poke.getAtk();
+			def = poke.getDef();
+			hp = poke.getHp();
+			lvl = poke.getLvl();
+			
+	}
+
+
+
 }

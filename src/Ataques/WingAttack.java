@@ -30,7 +30,7 @@ public class WingAttack extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-
+        
         try {
             this.imagem = new Image("resources/ataques/" + name + "/" + name + ".png");
         } catch (SlickException ex) {
