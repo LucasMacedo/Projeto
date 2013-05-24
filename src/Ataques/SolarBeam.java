@@ -12,7 +12,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-
 public class SolarBeam extends Ataque {
 
     int contador;
@@ -27,8 +26,7 @@ public class SolarBeam extends Ataque {
         }
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
-
-       
+        
         this.desativado = false;
         this.x = x;
         this.y = y;

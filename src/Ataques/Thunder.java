@@ -16,6 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Thunder extends Ataque {
 
     public Thunder(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -30,7 +31,6 @@ public class Thunder extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        
 
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 165, 315);

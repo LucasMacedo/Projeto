@@ -13,7 +13,7 @@ import Principal.Pokemon;
 
 public class GunkShot extends Ataque {
 
-    public GunkShot(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public GunkShot(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -40,10 +40,8 @@ public class GunkShot extends Ataque {
         }
 
         if(this.pokemon.tipo.equals("Player")){
-        	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-        	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -54,7 +52,6 @@ public class GunkShot extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (acertou == true) {
             this.contadorDano++;

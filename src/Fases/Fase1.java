@@ -22,7 +22,6 @@ import Principal.Player;
 import Principal.Pokemon;
 import Telas.CharacterSelect;
 
-import Ataques.Ember;
 import DAO.AtaqueDAO;
 import DAO.PokemonDAO;
 

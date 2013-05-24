@@ -12,10 +12,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.StateBasedGame;
 
-
 public class RazorLeaf extends Ataque {
 
-    public RazorLeaf(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public RazorLeaf(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -30,8 +29,6 @@ public class RazorLeaf extends Ataque {
         this.yInicial = y;
         this.x = x;
         this.y = y;
-        
-
         try {
             this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 220, 85);
         } catch (SlickException ex) {

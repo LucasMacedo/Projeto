@@ -15,7 +15,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class HyperFang extends Ataque {
 
-    public HyperFang(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public HyperFang(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -46,8 +47,11 @@ public class HyperFang extends Ataque {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
 
-        this.dx = Math.cos(Math.toRadians(angulo)) * velocidade;
-        this.dy = -Math.sin(Math.toRadians(angulo)) * velocidade;
+        if(this.pokemon.tipo.equals("Player")){
+        	this.dy = -this.velocidade;
+        } else {
+        	this.dy = this.velocidade;
+        }
     }
 
     @Override
@@ -56,7 +60,6 @@ public class HyperFang extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.x += this.dx;
         this.y += this.dy;
         if (this.getAcertou() == true) {
             this.contadorDano++;
