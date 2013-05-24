@@ -2,6 +2,7 @@ package Fases;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -30,6 +31,10 @@ public class Fase1 extends BasicGameState{
 	Pokemon pokemon, pokemonInimigo;
 	Inimigo inimigo;
 	boolean inicializou = false;
+	int cooldown = 0;
+	int VidaInicial;
+	
+	
 
 	public Fase1(CharacterSelect charSelect){
 		this.charSelect = charSelect;
@@ -46,6 +51,7 @@ public class Fase1 extends BasicGameState{
 		this.game = game;
 		this.listaInimigos = PokemonDAO.getLista();
 		this.InimigoLista = new ArrayList<Inimigo>();
+		
 	}
 
 	@Override
@@ -57,6 +63,16 @@ public class Fase1 extends BasicGameState{
 		}
 		
 		this.lancaAtaques();
+		
+			
+			if(this.cooldown <= 0){
+				this.CriaInimigo();
+				this.cooldown = (int) (100 + (Math.random()* 500));
+			}else{
+			this.cooldown--;
+			}
+		
+		
 	}
 
 	@Override
@@ -75,6 +91,11 @@ public class Fase1 extends BasicGameState{
 		g.drawRoundRect(gc.getWidth()/2 + 110, gc.getHeight()/2 + 180, 180, 150, 10);
 		g.drawString(pokemon.getNome(), gc.getWidth()/2 + 120, gc.getHeight()/2 + 190);
 		g.drawString(" "+ pokemon.getLvl(), gc.getWidth()/2 + 250 , gc.getHeight()/2 + 190);
+		g.drawRoundRect(gc.getWidth()/2 + 120, gc.getHeight()/2 + 220, 150, 20, 0);
+		g.setColor(Color.green);
+		g.fillRect(gc.getWidth()/2 + 120, gc.getHeight()/2 + 220, (pokemon.getHp()*150)/this.VidaInicial, 20);
+		g.setColor(Color.white);
+		
 		
 		for(Ataque a: this.ataquesPlayer){
 			a.render(gc, game, g);
@@ -86,15 +107,13 @@ public class Fase1 extends BasicGameState{
 		System.out.println("ERRO - " + this.charSelect.getPlayer1());
 		pokemon = new Pokemon(this.charSelect.getIdPokemonPlayer1(), this.charSelect.getPlayer1(), "Player");
 		
-		
-		this.CriaInimigo();
-		
 		this.player = new Player(pokemon, 100, 100);
-		
-		
+				
 		this.ataquesPlayer = new ArrayList<Ataque>();
 		this.ataquesInimigo = new ArrayList<Ataque>();
 		this.inicializou = true;
+		
+		this.VidaInicial = pokemon.getHp();
 	}
 	
 	
@@ -106,18 +125,12 @@ public class Fase1 extends BasicGameState{
 	}
 	
 	public void CriaInimigo(){
-		
-		int yx = (int) (1+ (Math.random()* 20));
-		
-		for(int x = 0 ; x < yx ;x++){	
-			
 		int i = (int) ( 1 + (Math.random()* 38));	
 			String nomeIni = this.listaInimigos.get(i).getNome();
 			int iniID = this.listaInimigos.get(i).getId();
 		pokemonInimigo = new Pokemon(iniID,nomeIni,"Inimigo");
 		this.inimigo = new Inimigo(pokemonInimigo);
 		InimigoLista.add(this.inimigo);
-		}
 		
 	}
 	

@@ -13,8 +13,11 @@ import Principal.Pokemon;
 
 public class Ember extends Ataque {
 
+	 
+	 
     public Ember(int x, int y, Pokemon pokemon) {
-        this.pokemonsAcertados = new ArrayList<Pokemon>();
+    	this.pokemon = pokemon;
+    	this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
         if (name.lastIndexOf('.') > 0) {
