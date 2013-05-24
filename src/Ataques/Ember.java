@@ -41,10 +41,8 @@ public class Ember extends Ataque {
         }
 
         if(this.pokemon.tipo.equals("Player")){
-        //	this.dx = this.velocidade;
         	this.dy = -this.velocidade;
         } else {
-       // 	this.dx = -this.velocidade;
         	this.dy = this.velocidade;
         }
     }
@@ -55,7 +53,6 @@ public class Ember extends Ataque {
             this.contadorDano++;
             return;
         }
-     //   this.x += this.dx;
         this.y += this.dy;
         if (this.getAcertou() == true) {
             this.contadorDano++;

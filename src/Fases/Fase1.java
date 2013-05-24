@@ -51,6 +51,7 @@ public class Fase1 extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame game)throws SlickException {
 		this.game = game;
 		this.listaInimigos = PokemonDAO.getLista();
+		this.InimigoLista = new ArrayList<Inimigo>();
 	}
 
 	@Override
@@ -112,7 +113,6 @@ public class Fase1 extends BasicGameState{
 		this.inimigo = new Inimigo(pokemonInimigo);
 		//InimigoLista.add(this.inimigo);
 		}
-
 		
 		this.player = new Player(pokemon, 100, 100);
 		
@@ -125,6 +125,7 @@ public class Fase1 extends BasicGameState{
 		
 		this.inicializou = true;
 	}	
+	
 	
 	public void lancaAtaques(){
 if(this.player.atacou == true && this.player.cooldownAtaque <= 0){
