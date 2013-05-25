@@ -111,7 +111,7 @@ public class CharacterSelect extends BasicGameState {
 
 		this.numLinhas = ((this.listaDePokemon.size() + 1) / 6) + 1;
 
-		this.cenario = new Image("resources/fundo CharSelect.png");
+		this.cenario = new Image("resources/CharSelect2.jpg");
 
 		this.somSelect = new Sound("resources/sounds/misc/select.wav");
 		this.somMove = new Sound("resources/sounds/misc/move.wav");
@@ -128,7 +128,7 @@ public class CharacterSelect extends BasicGameState {
 			throws SlickException {
 		this.cenario.draw(0, 0);
 
-		g.setColor(Color.white);
+		g.setColor(Color.black);
 		// g.drawString(" Player 1, escolha o personagem !!", 250, 290);
 		g.drawString(
 				"Pressione o botão 'BACKSPACE' para voltar",
@@ -462,8 +462,8 @@ public class CharacterSelect extends BasicGameState {
 		// g.setColor(Color.red);
 		// g.fillRect(75, 40, 675, 250);
 		//Desenha aonde o pokemons se encontar
-		g.setColor(Color.white);
-		g.fillRect((gc.getWidth() / 2) - 250 / 2, 50, 250, 150);
+		//g.setColor(Color.white);
+		//g.fillRect((gc.getWidth() / 2) - 250 / 2, 50, 250, 150);
 		g.setColor(Color.red);
 		g.drawRect(40, 39, 520, 256);
 		
@@ -474,13 +474,13 @@ public class CharacterSelect extends BasicGameState {
 		// desenha os quadrados que ficam por baixo dos pokemons
 		for (int i = 1; i <= colunas; i++) {
 			for (int i2 = 1; i2 <= linhas; i2++) {
-				g.setColor(Color.lightGray);
-				g.fillRect(75 * i, 260 + 75 * i2, 70, 70);
+				//g.setColor(Color.lightGray);
+				//g.fillRect(75 * i, 260 + 75 * i2, 70, 70);
 				g.setColor(Color.decode("1996553984"));
 				g.drawRect(75 * i, 260 + 75 * i2, 70, 70);
 			}
 		}
-		g.setColor(Color.white);
+		g.setColor(Color.red);
 	}
 
 	public void desenhaStats(GameContainer gc, Graphics g) {

@@ -77,7 +77,7 @@ public class Fase1 extends BasicGameState {
 
 		// this.lancaAtaques();
 		this.CriaInimigo();
-		this.MoveMapa(3);
+		this.MoveMapa(1);
 	}
 
 	@Override
@@ -262,8 +262,7 @@ public class Fase1 extends BasicGameState {
 	public void CriaInimigo() {
 
 		if (this.cooldown <= 0) {
-			int yx = (int) (1 + (Math.random() * 20));
-
+			
 			int i = (int) (1 + (Math.random() * 38));
 			String nomeIni = this.listaInimigos.get(i).getNome();
 			int iniID = this.listaInimigos.get(i).getId();

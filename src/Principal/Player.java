@@ -52,12 +52,12 @@ public class Player {
 
 	public void verificaLimites() {
 
-		if (this.pokemon.getX() < 0) {
-			this.pokemon.setX(0);
+		if (this.pokemon.getX() < 50) {
+			this.pokemon.setX(50);
 		}
 
-		else if (this.pokemon.getX() > 600) {
-			this.pokemon.setX(600);
+		else if (this.pokemon.getX() > 550) {
+			this.pokemon.setX(550);
 		}
 
 		if (this.pokemon.getY() < 0) {
