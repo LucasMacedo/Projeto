@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="19" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grass01vs7" tilewidth="32" tileheight="32">
+  <image source="../Tiles/grass01vs7.png" width="606" height="479"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="19" height="100">
+  <data encoding="base64" compression="zlib">
+   eJydmL1vHFUUxW+MBBIpkyKbre0ijkUDyhY0NCC7t0Rk/wMB2RWIgiT2uggVH85uYUuzApJ4uxQBot0GUUGUMg2Ra0rX6XOf/I72zJn7ZtcURzOemffb+867776bLJnZOwvoMt2/G7y/5Lrqeuk6yXrg+i7fj13T/OwD16euz1w3XHfyu2kef8W1Iqwj11eur+l6lFmfu24La5zHL7t6+X5CsSA2XKeZ9YXry0Jct1wbEtc4X49zPMfE+tD1EbEmxFp3bRMLc8I3Y7qP/GLWlmuXWJgTvgEbLPWLWTuufWJhTvhmnl/M2nM9DOY4FfYicR26ngRznAZsjutj13ukNP6xaymYI3wHO+X5J667rnuu+65NiSvKe7yfEjvN6XvXD64fXT9lFucq5/3EmjmBuSbWz65fXK9dj/IzztUUF/JecwL7AKxnrt8CFseFvJ9Ycy/iPnn9fvasFFfaj9vE4px6QPfjrDfCwnPsxyVhwe8jiXMasDiudVrHlzTuxOJ6pizUAuzHFWKx96tWz9d0vyks3Y89YmF+f5KYz6xr1tyPG8SaWLMOsmdvhMXeH8o6Ygzq8rHV99JTYbH3aT/uWjMmzInPgMT9i1i6H59bXL+O89//ZmEfvGphvbB6fqmUxXFdy+/AOrXz/OIYIuF9Yv3u+sPOc4LfJ79WrJ6bqkVZya/enHhOhPW365+AlfzakN/+v6zk1/YF51hiIb8WZb0iVqpp6RzA+ZHq6r6Mi9YP1/+sfn7coLHJr4fCieLBVc8PZiW/nlyAhfPjV6vXsKQzO897HV9i4fzgHMP3yfurtrhfpXxFrkZ5X4qvlBfwvldgXJSVvN8ozC+aaxsr+aV5H8W2CCv5tWvNuZTWQnNf/dqfM0flptx/HbDSHkr51RFdd3VdI1eVr1DfZrla0fvUm6T8Ws3fHAiroufQgFj8fNnO84tZOhYaksDiZ6k36WXWID+Lxg4pRp4jz309+8UsqCvj+/kbnSP82iK/brrWZCyPH9DvgQU/Emsn+9WZM7YSMQu8PfGLx3cDBuYD1oBYh4FfyAker2vL3mMc6lcbizmaE7yOqF+dAks56dm3so5goX5xXFGuDm22n5g1JNZp4FffmrlaLcA6C/zi+VTCGbWwLtlsPzLresDAtV9gXcl+dYTF+cysyup7iOvRcuAXexblaol1y5r7kWNUv3QPMWud/IpYHBvnSpRfW+QXaimzuJ5Fec/e75BfHFdlzXrGeRax9gp+sU/qVYl1mP3S+jdPEetx9kvr3zxFrOc2Ox+jOjMMfNP6hXm/EL907dkvZkY5cWr1/NKYojzlXOVvzmxWv5TVtfrZwPNhFt5xPwG/MBfU8r4wNS58G/UTWhsGwmTv+XejfiKqMxpjxIr6iRKrIl6UE1E/EbFK9SvqJ7RmtdXCUYGFfmK1wGLxXo9Y2k+AFdWbqAfgXI36CZw1PE9lR96jn+hYe46qf9Ec0U9E68g1RvdSxOJ+4qbFuaBxRn6lesz9RNucOE9LLPQT8EvnVFqDiBX1EyWvSnUCLPQTyirViTZW1E8gt/lsq+S3Ihb3E/NYpRqNcxX9hO5t5L6u5ShgHWQW+gmdA7O6Oe7SuT3MLPQTyuK/u8JhFvcO6CfaWHpWdgos5Fcbq63mMIvzSz3m/rdUcziHOb+U1bXmOqCn4nMIv8P5xbV5lMfNY2l+IS6uFQdWz1X89lqON2JpX8j7Dnxd07UCC32h/hsZOQqx9xoX1hbn0DfE4tjWSDxP/P8Xr22K6y3+7PH3
+  </data>
+ </layer>
+</map>

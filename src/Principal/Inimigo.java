@@ -9,7 +9,7 @@ public class Inimigo {
 	public Pokemon pokemon;
 	public boolean atacou;
 	public int cooldownAtaque = 50;
-	int x = (int) (10 + (Math.random() * 600));
+	int x = (int) (50 + (Math.random() * 550));
 
 	public Inimigo(Pokemon pokemon) {
 		this.pokemon = pokemon;
@@ -35,7 +35,7 @@ public class Inimigo {
 
 		int getY = this.pokemon.getY();
 		if (getY == 700) {
-			this.pokemon.setX((int) (10 + (Math.random() * 600)));
+			this.pokemon.setX((int) (50 + (Math.random() * 550)));
 			this.pokemon.setY(0);
 
 		} else {

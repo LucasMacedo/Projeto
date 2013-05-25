@@ -2,8 +2,10 @@ package Telas;
 
 
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -15,6 +17,7 @@ public class MenuMain extends BasicGameState {
 	GameContainer gc;
 	StateBasedGame game;
 	String[] opcao = {"Iniciar","Opções","Sair"};
+	Image img, imgIcone;
 	private int selected;
 	
 	@Override
@@ -24,6 +27,8 @@ public class MenuMain extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame game)	throws SlickException {
+		this.img = new Image("resources/Fases/Title.png");
+		this.imgIcone = new Image("resources/icone.png");
 		this.gc = gc;
 		this.game = game;
 		
@@ -31,12 +36,16 @@ public class MenuMain extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
+		g.setBackground(Color.white);
+		this.img.drawCentered(gc.getWidth()/2, gc.getHeight()/2);
+		
 		
 		for(int i = 0; i < this.opcao.length; i++){
-			g.drawString(opcao[i], gc.getWidth()/2, 120 + (40 * i));
+			g.setColor(Color.black);
+			g.drawString(opcao[i], gc.getWidth()/2 - 50, 500 + (40 * i));
 			
 			if(i == this.selected){
-				g.drawRect(gc.getWidth()/2 - 20, 120 + (40 * i),100,20);
+				this.imgIcone.draw(gc.getWidth()/2 - 70, 500 + (40 * i));
 			}
 			
 			
