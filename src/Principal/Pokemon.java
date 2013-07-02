@@ -5,8 +5,10 @@ import model.PokemonLiberado;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
+import DAO.PokemonDAO;
 import DAO.PokemonLiberadoDAO;
 
 public class Pokemon extends GameObject {
@@ -81,7 +83,22 @@ public class Pokemon extends GameObject {
 		}
 
 	}
+	
+	public Rectangle getRetangulo(){
+		if (this.tipo.equals("Player")) {
+			Rectangle rect = new Rectangle((int) this.x, (int) this.y, this.animacaoCima.getImage().getWidth(), this.animacaoCima.getImage().getHeight());
+	        return rect;
+		} else {
+			Rectangle rect = new Rectangle((int) this.x, (int) this.y, this.animacaoBaixo.getImage().getWidth(), this.animacaoBaixo.getImage().getHeight());
+	        return rect;
+		}
+	}
 
+
+	public void perdeVida(int quantia){
+		this.setHp(this.getHp()-quantia);
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -127,8 +144,7 @@ public class Pokemon extends GameObject {
 	}
 
 	public void setHp(int hp) {
-		hp += (((hp + 1 / 8 + 50) * lvl) / 50 + 10);
-		this.hp = hp;
+		this.hp = hp;	
 	}
 
 	public int getVidaInicial(){
@@ -149,12 +165,13 @@ public class Pokemon extends GameObject {
 
 
 	public void SetaPokemon(int id){
-		PokemonLiberado poke = PokemonLiberadoDAO.getPokemon(id);
-		
-			atk = poke.getAtk();
-			def = poke.getDef();
-			hp = poke.getHp();
-			lvl = poke.getLvl();
+		model.Pokemon poke = PokemonDAO.getPokemon(id);
+		//arrumar, botar nas formulas
+			atk = poke.getAtkBase();
+			def = poke.getAtkBase();
+			hp = poke.getHpBase();
+			lvl = 1;//poke.getLvl();
+			hp += (((hp + 1 / 8 + 50) * lvl) / 50 + 10);
 			VidaInicial = hp;
 	}
 

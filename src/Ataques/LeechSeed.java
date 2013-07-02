@@ -53,10 +53,10 @@ public class LeechSeed extends Ataque {
             this.contadorDano++;
             return;
         }
-        this.y += this.dy;
         if (this.getAcertou() == true) {
-            this.contadorDano++;
+        	this.desativado = true;
         }
+        this.y += this.dy;
     }
 
     @Override

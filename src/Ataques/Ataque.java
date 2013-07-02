@@ -21,7 +21,7 @@ public abstract class Ataque extends GameObject {
     int velocidade = 15; //Determina a velocidade em que o personagem anda
     public boolean desativado;
     public boolean acertou = false;
-    int dano;// dano final
+    int danoCausado;// dano final
     int danoBruto;// dano inicial 
     int xInicial; // Possição inicial para 
     int yInicial;
@@ -35,23 +35,23 @@ public abstract class Ataque extends GameObject {
     public ArrayList<Pokemon> pokemonsAcertados;
     
     
-    public void setDano(int n) {
-        this.dano = n;
+    public void setDanoCausado(int n) {
+        this.danoCausado = n;
     }
 
     public void setDanoBruto(int n) {
         this.danoBruto = n;
     }
 
-    public int getDano() {
-        return this.dano;
+    public int getDanoCausado() {
+        return this.danoCausado;
     }
 
     public int getDanoBruto() {
         return this.danoBruto;
     }
 
-    public Rectangle getRectangulo() {
+    public Rectangle getRetangulo() {
         if (this.imagem != null) {
             Rectangle rect = new Rectangle((int) this.x, (int) this.y, this.imagem.getWidth(), this.imagem.getHeight());
             return rect;

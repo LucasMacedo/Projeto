@@ -13,7 +13,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class AirSlash extends Ataque {
 
-    public AirSlash(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public AirSlash(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -38,6 +39,7 @@ public class AirSlash extends Ataque {
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
         } else {
+        	this.imagem.rotate(180);
         	this.dy = this.velocidade;
         }
     }

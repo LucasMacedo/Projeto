@@ -44,7 +44,7 @@ public class HyperFang extends Ataque {
         }
         this.animation = new Animation();
         for (int i = 0; i < 6; i++) {
-            animation.addFrame(sprite.getSprite(i, 0), 100);
+            animation.addFrame(sprite.getSprite(i, 0), 50);
         }
 
         if(this.pokemon.tipo.equals("Player")){

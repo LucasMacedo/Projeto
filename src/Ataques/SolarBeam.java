@@ -16,7 +16,7 @@ public class SolarBeam extends Ataque {
 
     int contador;
 
-    public SolarBeam(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public SolarBeam(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         this.pokemon = pokemon;
@@ -34,6 +34,9 @@ public class SolarBeam extends Ataque {
             this.imagem = new Image("resources/ataques/" + name + "/" + name + ".png");
         } catch (SlickException ex) {
             Logger.getLogger(FlameBurst.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(!(this.pokemon.tipo.equals("Player"))){
+        	this.imagem.rotate(180);
         }
     }
 

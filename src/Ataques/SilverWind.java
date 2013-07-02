@@ -39,6 +39,7 @@ public class SilverWind extends Ataque {
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
         } else {
+        	this.imagem.rotate(180);
         	this.dy = this.velocidade;
         }
     }

@@ -31,10 +31,10 @@ public class BodySlam extends Ataque {
 
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
-        	this.imagem = pokemon.animacaoBaixo.getImage();
+        	this.imagem = pokemon.animacaoCima.getImage();
         } else {
         	this.dy = this.velocidade;
-        	this.imagem = pokemon.animacaoCima.getImage();
+        	this.imagem = pokemon.animacaoBaixo.getImage();
         }
     }
 

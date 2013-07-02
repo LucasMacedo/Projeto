@@ -63,7 +63,17 @@ public class HydroPump extends Ataque {
         if (this.animation.isStopped()) {
             return;
         }
+        
+        int angulo;
+        if(this.pokemon.tipo.equals("Player")){
+            angulo = 90;
+        }else{
+        	angulo = -90;
+        }
+
+        g.rotate(this.x, this.y + this.animation.getHeight() / 2, -angulo);
         this.animation.draw(this.x, this.y);
+        g.rotate(this.x, this.y + this.animation.getHeight() / 2, angulo);
     }
 
     public boolean estaAtivo() {

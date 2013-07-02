@@ -15,7 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Thunder extends Ataque {
 
-    public Thunder(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public Thunder(int x, int y, Pokemon pokemon) {
     	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
@@ -33,14 +33,20 @@ public class Thunder extends Ataque {
         this.y = y;
 
         try {
-            this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 165, 315);
+            this.sprite = new SpriteSheet("resources/ataques/" + name + "/" + name + ".png", 224, 56);
         } catch (SlickException ex) {
             JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage());
         }
         this.animation = new Animation();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 7; i++) {
             animation.addFrame(sprite.getSprite(i, 0), 100);
         }
+
+        this.animation.setLooping(false);
+        
+
+        this.animation.setLooping(false);
+        
 
     }
 
@@ -57,9 +63,19 @@ public class Thunder extends Ataque {
 
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) {
-        if (this.desativado == true) {
+    	if (this.animation.isStopped()) {
             return;
         }
+        int angulo;
+        if(this.pokemon.tipo.equals("Player")){
+            angulo = 90;
+        }else{
+        	angulo = -90;
+        }
+
+        g.rotate(this.x, this.y + this.animation.getHeight() / 2, -angulo);
         this.animation.draw(this.x, this.y);
+        g.rotate(this.x, this.y + this.animation.getHeight() / 2, angulo);
+
     }
 }
