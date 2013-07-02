@@ -300,7 +300,7 @@ public class CharacterSelect extends BasicGameState {
 				}
 				System.out.println(this.pokemonSelecionado
 						+ "poke selecionado down");
-				// this.yDraw = (this.ySelecionado * 75 - 5) + 260;
+				//this.yDraw = (this.ySelecionado * 75 - 5) + 260;
 				this.yDraw = (this.linha * 75 - 5) + 260;
 
 			} 
@@ -462,8 +462,8 @@ public class CharacterSelect extends BasicGameState {
 		// g.setColor(Color.red);
 		// g.fillRect(75, 40, 675, 250);
 		//Desenha aonde o pokemons se encontar
-		//g.setColor(Color.white);
-		//g.fillRect((gc.getWidth() / 2) - 250 / 2, 50, 250, 150);
+		g.setColor(Color.white);
+		g.fillRect((gc.getWidth() / 2) - 250 / 2, 50, 250, 150);
 		g.setColor(Color.red);
 		g.drawRect(40, 39, 520, 256);
 		
@@ -474,8 +474,8 @@ public class CharacterSelect extends BasicGameState {
 		// desenha os quadrados que ficam por baixo dos pokemons
 		for (int i = 1; i <= colunas; i++) {
 			for (int i2 = 1; i2 <= linhas; i2++) {
-				//g.setColor(Color.lightGray);
-				//g.fillRect(75 * i, 260 + 75 * i2, 70, 70);
+				g.setColor(Color.lightGray);
+				g.fillRect(75 * i, 260 + 75 * i2, 70, 70);
 				g.setColor(Color.decode("1996553984"));
 				g.drawRect(75 * i, 260 + 75 * i2, 70, 70);
 			}
