@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class RazorLeaf extends Ataque {
 
     public RazorLeaf(int x, int y, Pokemon pokemon) {
+    	this.pokemon = pokemon;
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -60,6 +61,17 @@ public class RazorLeaf extends Ataque {
         if (this.animation.isStopped()) {
             return;
         }
-       this.animation.draw(this.x, this.y);
+
+        int angulo;
+        if(this.pokemon.tipo.equals("Player")){
+            angulo = 90;
+        }else{
+        	angulo = -90;
+        }
+
+        g.rotate(this.x, this.y + this.animation.getHeight() / 2, -angulo);
+        this.animation.draw(this.x, this.y);
+        g.rotate(this.x, this.y + this.animation.getHeight() / 2, angulo);
+
     }
 }

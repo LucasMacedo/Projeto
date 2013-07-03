@@ -16,7 +16,7 @@ public class Bite extends Ataque {
     int frameElapsed;
     int frame;
 
-    public Bite(int x, int y, int destX, int destY, float angulo, Pokemon pokemon) {
+    public Bite(int x, int y, Pokemon pokemon) {
         this.pokemonsAcertados = new ArrayList<Pokemon>();
         this.setContador(0);
         String name = this.toString();
@@ -40,7 +40,7 @@ public class Bite extends Ataque {
         }
         this.animation = new Animation();
         for (int i = 0; i < 7; i++) {
-            animation.addFrame(sprite.getSprite(i, 0), 100);
+            animation.addFrame(sprite.getSprite(i, 0), 50);
         }
         
         if(this.pokemon.tipo.equals("Player")){

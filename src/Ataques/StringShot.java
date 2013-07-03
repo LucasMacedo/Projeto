@@ -23,6 +23,8 @@ public class StringShot extends Ataque {
         model.Ataque a = AtaqueDAO.getAtaque(name);
         this.setDanoBruto(a.getAtk());
 
+        this.pokemon = pokemon;
+        
         this.desativado = false;
         this.xInicial = x;
         this.yInicial = y;
@@ -37,6 +39,7 @@ public class StringShot extends Ataque {
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
         } else {
+        	this.imagem.rotate(180);
         	this.dy = this.velocidade;
         }
     }

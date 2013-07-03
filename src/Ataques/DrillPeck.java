@@ -38,6 +38,7 @@ public class DrillPeck extends Ataque {
         if(this.pokemon.tipo.equals("Player")){
         	this.dy = -this.velocidade;
         } else {
+        	this.imagem.rotate(180);
         	this.dy = this.velocidade;
         }
     }
@@ -59,6 +60,11 @@ public class DrillPeck extends Ataque {
         if (this.desativado == true) {
             return;
         }
-        this.imagem.draw(this.x, this.y);
+        if(this.pokemon.tipo.equals("Player")){
+            this.imagem.draw(this.x, this.y);
+        } else {
+        	this.imagem.setRotation(180);
+            this.imagem.draw(this.x, this.y);
+        }
     }
 }

@@ -1,0 +1,4 @@
+-arrumar a derrota do player
+-arrumar as formulas de atk, def,  hp, etc
+-arrumar a fonte do dano, botar amarelo e maior
+-arrumar todos os ataques, fazer com que sumam quando acertam(ver classe LeechSeed)
