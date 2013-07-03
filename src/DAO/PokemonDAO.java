@@ -167,4 +167,42 @@ public class PokemonDAO {
         return p;
 
     }
+
+    public static ArrayList<Pokemon> getListaPokemonPokemonPorTipo(String[] elemento){
+    	ArrayList<Pokemon> lista = new ArrayList<Pokemon>();
+
+        MySQL banco = new MySQL();
+    	for(int i = 0; i<elemento.length; i++){
+    	
+        String sql = "select * from pokemon "
+                + "inner join elemento on pokemon.elementoPrimario = elemento.id "
+        		+ "where elemento.elemento = \"" +elemento[i]+ "\"";
+                
+        /*
+         * SELECT * FROM "PUBLIC"."POKEMON" 
+inner join ELEMENTO on ELEMENTO.id = pokemon.elementoPrimario
+where elemento.elemento = "Grass"
+         */
+        
+        ConjuntoResultados linhas = banco.executaSelect(sql);
+
+        while (linhas.next()) {
+            Pokemon p = new Pokemon();
+            p.setId(linhas.getInt("id"));
+            p.setNome(linhas.getString("nome"));
+            p.setRaridade(linhas.getInt("raridade"));
+            p.setLevelQueEvolui(linhas.getInt("lvlQueEvolui"));
+            p.setAtkBase(linhas.getInt("atkBase"));
+            p.setDefBase(linhas.getInt("defBase"));
+            p.setSpdBase(linhas.getInt("spdBase"));
+            p.setHpBase(linhas.getInt("hpBase"));
+            p.setElementoPrimario(linhas.getInt("elementoPrimario"));
+            p.setElementoSecundario(linhas.getInt("elementoSecundario"));
+            p.setElementoPrimarioString(linhas.getString("elemento.elemento"));
+
+            lista.add(p);
+        }
+    	}
+        return lista;
+    }
 }

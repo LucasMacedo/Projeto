@@ -38,7 +38,7 @@ public class Main extends StateBasedGame{
 		this.addState(new MenuMain());
 		this.addState(new MenuOpcoes());
 		this.addState(charSelect);
-		this.addState(new Fase1(charSelect));
+		this.addState(new FaseGrama(charSelect));
 		
 	}
 

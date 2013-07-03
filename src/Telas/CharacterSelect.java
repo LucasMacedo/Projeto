@@ -3,7 +3,7 @@ package Telas;
 import DAO.PokemonDAO;
 import DAO.PokemonDerrotadoDAO;
 import DAO.PokemonLiberadoDAO;
-import Fases.Fase1;
+import Fases.FaseGrama;
 import Principal.Player;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -352,7 +352,7 @@ public class CharacterSelect extends BasicGameState {
 
 				System.out.println("CHAR SELECT - "
 						+ this.nomes.get(this.pokemonSelecionado));
-				game.enterState(Fase1.ID, new FadeOutTransition(Color.black),
+				game.enterState(FaseGrama.ID, new FadeOutTransition(Color.black),
 						new FadeInTransition(Color.black));
 			}
 		}

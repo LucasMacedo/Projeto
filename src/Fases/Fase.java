@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
 
 import Ataques.Ataque;
 import Principal.Inimigo;
@@ -24,9 +24,8 @@ import Telas.CharacterSelect;
 import DAO.AtaqueDAO;
 import DAO.PokemonDAO;
 
-public class Fase1 extends BasicGameState {
+public class Fase extends BasicGameState {
 
-	public static final int ID = 4;
 	StateBasedGame game;
 	CharacterSelect charSelect;
 	Player player;
@@ -40,18 +39,16 @@ public class Fase1 extends BasicGameState {
 	boolean inicializou = false;
 	int cooldown = 0;
 	
+	String[] elementosPermitidos;
+	ArrayList<model.Pokemon> listaPokemonsPermitidos;
+	
 	Mapa map;
 	int MapY = -2500;
 	int cooldownMap = 0;
 
-	public Fase1(CharacterSelect charSelect) {
-		this.charSelect = charSelect;
-		System.out.println("FASE1 - " + charSelect.player1);
-	}
-
 	@Override
 	public int getID() {
-		return ID;
+		return -1;
 	}
 
 	@Override
@@ -62,12 +59,14 @@ public class Fase1 extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int i) throws SlickException {
+		if (!inicializou) {
+			this.inicializa();
+		}
 		this.player.update(gc, game, i);
 
 		for (Inimigo x : this.InimigoLista) {
 			x.update(gc, game, i);
 		}
-
 		for (Ataque a : this.ataquesPlayer) {
 			a.update(gc, game, i);
 		}
@@ -87,32 +86,30 @@ public class Fase1 extends BasicGameState {
 			this.inicializa();
 		}
 		this.map.render(gc, game, g);
-		this.player.render(gc, game, g);
-
+		
+		for(Ataque a : this.ataquesInimigo){
+			a.render(gc, game, g);
+		}				
 		for (Inimigo i : this.InimigoLista) {
 			i.render(gc, game, g);
 		}
-
-		this.desenhaGUI(gc, g);
-
+		
 		for (int i = 0; i < this.ataquesPlayer.size(); i++) {
 			Ataque a = this.ataquesPlayer.get(i);
 			a.render(gc, game, g);
 			if(a.acertou && a.getContador() < 50){
-				this.desenhaDano(g, a.getX(), a.getY(), a.getDanoCausado()+"");
+				this.desenhaDano(g, a.getX(), a.getY()-a.getContador()*2/3, a.getDanoCausado()+"");
 			}
 			if(a.getContador() > 50){
 				this.ataquesPlayer.remove(a);
 			}
 		}
-		for(Ataque a : this.ataquesInimigo){
-			a.render(gc, game, g);
-		}
+		this.player.render(gc, game, g);
+
+		this.desenhaGUI(gc, g);
 	}
 
 	public void inicializa() {
-
-		System.out.println("ERRO - " + this.charSelect.getPlayer1());
 		pokemon = new Pokemon(this.charSelect.getIdPokemonPlayer1(), this.charSelect.getPlayer1(), "Player");
 
 		this.InimigoLista = new ArrayList<Inimigo>();
@@ -125,7 +122,9 @@ public class Fase1 extends BasicGameState {
 		this.ataquesInimigo = new ArrayList<Ataque>();
 		this.listaAtaques = new ArrayList<model.Ataque>();
 		this.listaNomes = new ArrayList<String>();
+		this.listaPokemonsPermitidos = new ArrayList<model.Pokemon>();
 
+		this.listaPokemonsPermitidos = PokemonDAO.getListaPokemonPokemonPorTipo(this.elementosPermitidos);
 		this.listaAtaques = AtaqueDAO.getListaAtaque();
 		this.listaAtaques.remove(0);//tira o primeiro ataque por que ele é um item vazio no banco de dados
 		
@@ -289,7 +288,7 @@ public class Fase1 extends BasicGameState {
 	}
 	
 	public void desenhaDano(Graphics g, int x, int y, String dano){
-		g.setColor(Color.red);
+		g.setColor(Color.yellow);
 		g.drawString(dano, x, y);
 	}
 	
@@ -308,9 +307,9 @@ public class Fase1 extends BasicGameState {
 	public void CriaInimigo() {
 		int index = 0;
 		if (this.cooldown <= 0) {
-			int i = (int) (0 + (Math.random() * (this.listaNomes.size() -1)  ));
+			int i = (int) ((Math.random() * (this.listaPokemonsPermitidos.size())));
 						
-			String nomeIni = this.listaNomes.get(i);
+			String nomeIni = this.listaPokemonsPermitidos.get(i).getNome();
 			System.out.println(i);
 			i++;
 			for(model.Pokemon p: this.listaInimigos){
@@ -341,6 +340,10 @@ public class Fase1 extends BasicGameState {
 		} else {
 			this.cooldownMap++;
 		}
+	}
+	
+	public void setElementosPermitidos(String[] elementos){
+		this.elementosPermitidos = elementos;
 	}
 	
 	public void TipoInimigo(){
