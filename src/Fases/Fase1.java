@@ -32,13 +32,14 @@ public class Fase1 extends BasicGameState {
 	Player player;
 	ArrayList<model.Pokemon> listaInimigos;
 	ArrayList<Inimigo> InimigoLista;
+	ArrayList<String> listaNomes;
 	ArrayList<Ataque> ataquesPlayer, ataquesInimigo;
 	ArrayList<model.Ataque> listaAtaques;
 	Pokemon pokemon, pokemonInimigo;
 	Inimigo inimigo;
 	boolean inicializou = false;
 	int cooldown = 0;
-
+	
 	Mapa map;
 	int MapY = -2500;
 	int cooldownMap = 0;
@@ -57,9 +58,7 @@ public class Fase1 extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
-		this.listaInimigos = PokemonDAO.getLista();
-		this.InimigoLista = new ArrayList<Inimigo>();
-		this.map = new Mapa("fase1", MapY);
+		this.map = new Mapa("fase1", MapY,"Poison");
 	}
 
 	@Override
@@ -120,14 +119,19 @@ public class Fase1 extends BasicGameState {
 		this.InimigoLista = new ArrayList<Inimigo>();
 
 		this.player = new Player(pokemon, 300, 600);
-
+		
+		this.listaInimigos = PokemonDAO.getLista();
+		this.InimigoLista = new ArrayList<Inimigo>();
 		this.ataquesPlayer = new ArrayList<Ataque>();
 		this.ataquesInimigo = new ArrayList<Ataque>();
 		this.listaAtaques = new ArrayList<model.Ataque>();
+		this.listaNomes = new ArrayList<String>();
 
 		this.listaAtaques = AtaqueDAO.getListaAtaque();
 
 		this.inicializou = true;
+		
+		this.TipoInimigo();
 
 	}
 
@@ -260,12 +264,22 @@ public class Fase1 extends BasicGameState {
 	}
 
 	public void CriaInimigo() {
-
+		int index = 0;
 		if (this.cooldown <= 0) {
+			int i = (int) (0 + (Math.random() * (this.listaNomes.size() -1)  ));
+						
+			String nomeIni = this.listaNomes.get(i);
+			System.out.println(i);
+			i++;
+			for(model.Pokemon p: this.listaInimigos){
+				if(p.getNome() == nomeIni){
+					index = p.getId();
+				}
+			}
 			
-			int i = (int) (1 + (Math.random() * 38));
-			String nomeIni = this.listaInimigos.get(i).getNome();
-			int iniID = this.listaInimigos.get(i).getId();
+			int iniID = index; 
+			
+			System.out.println(nomeIni +" "+ index);
 			pokemonInimigo = new Pokemon(iniID, nomeIni, "Inimigo");
 			this.inimigo = new Inimigo(pokemonInimigo);
 			InimigoLista.add(this.inimigo);
@@ -287,4 +301,14 @@ public class Fase1 extends BasicGameState {
 			this.cooldownMap++;
 		}
 	}
+	
+	public void TipoInimigo(){
+		for(model.Pokemon p: this.listaInimigos){
+			if(p.getElementoPrimarioString().equals(this.map.getTipo())){
+				this.listaNomes.add(p.getNome());
+			}
+		}
+	}
+	
+	
 }

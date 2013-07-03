@@ -9,9 +9,11 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Mapa extends GameObject {
 		
 	TiledMap mapa;
+	String tipo;
 	
 	
-	public Mapa(String mapa, int y){
+	
+	public Mapa(String mapa, int y, String tipo){
 		try {
 			this.mapa = new TiledMap("resources/Fases/"+mapa+".tmx");
 		} catch (SlickException e) {
@@ -19,6 +21,7 @@ public class Mapa extends GameObject {
 			e.printStackTrace();
 		}
 		this.y = y;
+		this.tipo = tipo;
 	}
 
 	@Override
@@ -33,6 +36,10 @@ public class Mapa extends GameObject {
 	public void MoveMapa(int y){
 		this.setX(0);
 		this.setY(y);
+	}
+	
+	public String getTipo(){
+		return tipo;
 	}
 
 }
